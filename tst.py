@@ -4894,4 +4894,3 @@
 # spherePrim = UsdGeom.Sphere.Define(stage,'/hello/world')
 # stage.GetRootLayer().Save()
 
-x=1
