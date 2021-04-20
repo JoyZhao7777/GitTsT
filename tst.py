@@ -4894,3 +4894,64 @@
 # spherePrim = UsdGeom.Sphere.Define(stage,'/hello/world')
 # stage.GetRootLayer().Save()
 
+import os
+import re
+import sys
+import copy
+import itertools
+import uuid
+import copy
+import itertools
+import pprint
+import openpyxl
+import maya.cmds as cmds
+sys.path.append('D:\\zhaojiayi\\Documents\\coco')
+from cocoPipeline.lib.python.shotLib import getShotMessage
+from cocoPipeline.lib.python.assetLib import asset
+from cocoPipeline.bin.assetInShot import Function
+from cocoPipeline.lib.python.shotLib import castingLib
+from cocoPipeline.lib.python.assetLib import asset
+reload(getShotMessage)
+reload(asset)
+reload(castingLib)
+
+def get_shot_asset_srf(project,shot,sets=False):
+	shotinfo_list = castingLib.casting_from_excl(proj,shot)
+	srfpath_list = []
+	for shotinfo in shotinfo_list:
+		srfpath = "Z:\\%s\\assets\\char\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(project,shotinfo.asset_id,shotinfo.var['look'],shotinfo.asset_id,shotinfo.var['look'])
+		if os.path.isfile(srfpath):
+			srfpath_list.append(srfpath)
+	return srfpath_list
+
+def get_shot_ani(proj,shot):
+	shotinfo_list = castingLib.casting_from_excl(proj,shot)
+	anipath_list = []
+	for shotinfo in shotinfo_list:
+		anipath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\geocache\\%s\\%s_geocache_%s.abc"%(proj,shot[0:3],shot,shotinfo.asset_id,shot,shotinfo.asset_id)
+		if os.path.isfile(anipath):
+			anipath_list.append(anipath)
+	return anipath_list
+
+def get_cam_abc(proj,shot):
+	campath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\camcache\\cam\\%s_camcache_cam.abc"%(proj,shot[0:3],shot,shot)
+	if os.path.isfile(campath):
+		return campath
+	else:
+		print 'No such file'
+		return None,None
+proj = 'smxm'
+shot = 'chd042'
+anipath_list = get_shot_ani(proj,shot)
+srfpath_list = get_shot_asset_srf(proj,shot)
+for srfpath in srfpath_list:
+    namespace_srf = srfpath.split('\\')[-6]
+    cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = namespace_srf)
+for anipath in anipath_list:
+	namespace_ani = "%s:Root_grp"%(anipath.split('\\')[-2])
+	cmds.AbcImport(anipath, mode= True, connect= namespace_ani)
+cam_path = get_cam_abc(proj,shot)
+if cam_path:
+	cmds.file(cam_path,type = "Alembic",r= True)
+else:
+	print "No such File"
