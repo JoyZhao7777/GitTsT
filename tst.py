@@ -4914,6 +4914,9 @@ from cocoPipeline.lib.python.assetLib import asset
 reload(getShotMessage)
 reload(asset)
 reload(castingLib)
+import cocoPipeline.lib.python.ftrackLib.ftrackSession as ftrackSession
+reload(ftrackSession)
+
 
 def get_shotinfo(project,shot,sets=False):
 	shotinfo_list = castingLib.casting_from_excl(project,shot,sets)
@@ -4954,149 +4957,64 @@ def get_shot_sets(proj,shot):
 			sets_list.append(shotinfo)
 	return sets_list
 
+def get_shot_time(proj,shot):
+	xlsx_path = "Z:\\%s\\database\\casting\\main.xlsx"%proj
+	shotinfo = Function.getShot(xlsx_path, shot)
+	timeRange = shotinfo['frameRange']
+	return timeRange
+
+def auto_copy_uv(asset_name):
+	d_uvset = 'map1'
+	mesh_list =  cmds.listRelatives('%s:Root_grp'%asset_name,ad= True,type= ['geometryShape'])
+	cmds.listRelatives(['%s:Root_grp'%asset_name],c=True,type= 'geometryShape')
+	for mesh in mesh_list:
+		if not cmds.polyEvaluate(mesh,uvcoord = True):
+			print "%s has No Uvs"%mesh
+		else:
+			cmds.select(mesh)
+			uvsets_list = cmds.polyUVSet( query=True, currentUVSet=True)
+			if d_uvset not in uvsets_list:
+				print mesh
+				cmds.polyCopyUV(mesh,uvSetNameInput = uvsets_list[0],uvSetName= d_uvset)
+
+def get_proj_fps(proj):
+	session = ftrackSession.createSession()
+	projects = session.query('Project where name is "{0}"'.format(proj)).first()
+	GetFps = projects['custom_attributes']['fps']
+	time_dict = {
+	15:"gama",
+	24:"film",
+	25:"pal",
+	30:"ntsc",
+	48:"show",
+	50:"half",
+	60:"ntscf"
+	}
+	time_str = time_dict[GetFps]
+	return time_str
+
+
 proj = 'smxm'
 shot = 'xuz003'
-count = -1 
+timeRange = get_shot_time(proj,shot)
+count = 1 
 shotinfo_list = get_shotinfo(proj,shot)
 for shotinfo in shotinfo_list:
-	count += 1
+	count -= 1
 	srfpath = "Z:\\%s\\assets\\char\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(proj,shotinfo.asset_id,shotinfo.var['look'],shotinfo.asset_id,shotinfo.var['look'])
 	anipath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\geocache\\%s\\%s_geocache_%s.abc"%(proj,shot[0:3],shot,shotinfo.asset_name,shot,shotinfo.asset_name)
 	if os.path.isfile(srfpath) and os.path.isfile(anipath):
 		cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = shotinfo.asset_name)
 		cmds.reorder( '%s:Root_grp'%shotinfo.asset_name, r=count )
 		cmds.AbcImport(anipath, mode= True, connect ='%s:Root_grp' %(shotinfo.asset_name))
+		auto_copy_uv(shotinfo.asset_name)
 cam_path = get_cam_abc(proj,shot)
 if cam_path:
 	cmds.file(cam_path,type = "Alembic",r= True)
 else:
-	print "No such File"
-
-
-# anipath_list = get_shot_ani(proj,shot)
-# srfpath_list = get_shot_asset_srf(proj,shot)
-
-# print srfpath_list
-# print anipath_list
-# for srfpath in srfpath_list:
-#     namespace_srf = srfpath.split('\\')[-6]
-#     print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-#     print namespace_srf
-#     print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-#     cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = namespace_srf)
-# for anipath in anipath_list:
-# 	namespace_ani = "%s:Root_grp"%(anipath.split('\\')[-2])
-# 	print '--------------------------'
-# 	print namespace_ani
-# 	print '--------------------------'
-# 	cmds.AbcImport(anipath, mode= True, connect = namespace_ani)
-
-
-
-
-# '--------------------------'
-# 相机
-# cam_path = get_cam_abc(proj,shot)
-# if cam_path:
-# 	cmds.file(cam_path,type = "Alembic",r= True)
-# else:
-# 	print "No such File"
-# '--------------------------'
-
-# shotinfo_list =  get_shotinfo(proj,shot,sets=True)
-# shotinfo_list =  get_shotinfo(proj,shot,sets=True)
-
-# shotinfo_list = get_shotinfo(proj,shot,sets=True)
-# print get_shotinfo(proj,shot,sets=False)
-
-# for shotinfo in shotinfo_list:
-# 	print shotinfo.asset_name
-# 	print shotinfo.asset_id
-# 	print shotinfo.var
-
-
-import os
-import re
-import sys
-import copy
-import itertools
-import uuid
-import copy
-import itertools
-import pprint
-import openpyxl
-import maya.cmds as cmds
-sys.path.append('D:\\zhaojiayi\\Documents\\coco')
-from cocoPipeline.lib.python.shotLib import getShotMessage
-from cocoPipeline.lib.python.assetLib import asset
-from cocoPipeline.bin.assetInShot import Function
-from cocoPipeline.lib.python.shotLib import castingLib
-from cocoPipeline.lib.python.assetLib import asset
-reload(getShotMessage)
-reload(asset)
-reload(castingLib)
-
-def get_shotinfo(project,shot,sets=False):
-	shotinfo_list = castingLib.casting_from_excl(project,shot,sets)
-	return shotinfo_list
-
-def get_shot_asset_srf(project,shot,sets=False):
-	shotinfo_list = get_shotinfo(project,shot)
-	srfpath_list = []
-	for shotinfo in shotinfo_list:
-		srfpath = "Z:\\%s\\assets\\char\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(project,shotinfo.asset_id,shotinfo.var['look'],shotinfo.asset_id,shotinfo.var['look'])
-		if os.path.isfile(srfpath):
-			srfpath_list.append(srfpath)
-	return srfpath_list
-
-def get_shot_ani(proj,shot):
-	shotinfo_list = get_shotinfo(proj,shot)
-	anipath_list = []
-	for shotinfo in shotinfo_list:
-		anipath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\geocache\\%s\\%s_geocache_%s.abc"%(proj,shot[0:3],shot,shotinfo.asset_id,shot,shotinfo.asset_id)
-		if os.path.isfile(anipath):
-			anipath_list.append(anipath)
-	return anipath_list
-
-def get_cam_abc(proj,shot):
-	campath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\camcache\\cam\\%s_camcache_cam.abc"%(proj,shot[0:3],shot,shot)
-	if os.path.isfile(campath):
-		return campath
-	else:
-		print 'No such file'
-		return None,None
-
-def get_shot_sets(proj,shot):
-	shotinfo_list = get_shotinfo(project,shot,sets=True)
-	sets_list = []
-	for shotinfo in shotinfo_list:
-		asset_id = shotinfo.asset_id
-		if asset_id[0] == 's':
-			sets_list.append(shotinfo)
-	return sets_list
-
-proj = 'smxm'
-shot = 'xuz003'
-anipath_list = get_shot_ani(proj,shot)
-srfpath_list = get_shot_asset_srf(proj,shot)
-for srfpath in srfpath_list:
-    namespace_srf = srfpath.split('\\')[-6]
-    print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    print namespace_srf
-    print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    print srfpath
-    # cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = namespace_srf)
-for anipath in anipath_list:
-	namespace_ani = "%s:Root_grp"%(anipath.split('\\')[-2])
-	print '--------------------------'
-	print namespace_ani
-	print '--------------------------'
-	cmds.AbcImport(anipath, mode= "import", connect = namespace_ani)
-cam_path = get_cam_abc(proj,shot)
-if cam_path:
-	cmds.file(cam_path,type = "Alembic",r= True)
-else:
-	print "No such File"
-
-
+	print "No such camera File"
+fps = get_proj_fps(proj)
+cmds.currentUnit(time=fps)
+cmds.playbackOptions(minTime=int(timeRange[0])-2)
+cmds.playbackOptions(maxTime=int(timeRange[1])+2)
 
