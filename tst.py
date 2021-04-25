@@ -4894,28 +4894,30 @@
 # spherePrim = UsdGeom.Sphere.Define(stage,'/hello/world')
 # stage.GetRootLayer().Save()
 
-import os
-import re
+# import os
+# import re
 import sys
-import copy
-import itertools
-import uuid
-import copy
-import itertools
-import pprint
-import openpyxl
-import maya.cmds as cmds
-sys.path.append('D:\\zhaojiayi\\Documents\\coco')
-from cocoPipeline.lib.python.shotLib import getShotMessage
-from cocoPipeline.lib.python.assetLib import asset
-from cocoPipeline.bin.assetInShot import Function
-from cocoPipeline.lib.python.shotLib import castingLib
-from cocoPipeline.lib.python.assetLib import asset
-reload(getShotMessage)
-reload(asset)
-reload(castingLib)
-import cocoPipeline.lib.python.ftrackLib.ftrackSession as ftrackSession
-reload(ftrackSession)
+# import copy
+# import itertools
+# import uuid
+# import copy
+# import itertools
+# import pprint
+# import openpyxl
+# import maya.cmds as cmds
+# import string
+# sys.path.append('D:\\zhaojiayi\\Documents\\coco')
+# from cocoPipeline.lib.python.shotLib import getShotMessage
+# from cocoPipeline.lib.python.assetLib import asset
+# from cocoPipeline.bin.assetInShot import Function
+# from cocoPipeline.lib.python.shotLib import castingLib
+# from cocoPipeline.lib.python.assetLib import asset
+# reload(getShotMessage)
+# reload(asset)
+# reload(castingLib)
+# import cocoPipeline.lib.python.ftrackLib.ftrackSession as ftrackSession
+# reload(ftrackSession)
+from Qt import QtGui, QtWidgets, QtCore
 
 
 def get_shotinfo(project,shot,sets=False):
@@ -4993,28 +4995,200 @@ def get_proj_fps(proj):
 	time_str = time_dict[GetFps]
 	return time_str
 
+def get_shot_info(proj,shot):
+	# xlsx_path = "Z:\\%s\\database\\casting\\main.xlsx"%proj
+	xlsx_path = "C:\\Users\\zhaojiayi\\Desktop\\tstfile\\main.xlsx"
+	shotinfo = Function.getShot(xlsx_path, shot)
+	return shotinfo
 
-proj = 'smxm'
-shot = 'xuz003'
-timeRange = get_shot_time(proj,shot)
-count = 1 
-shotinfo_list = get_shotinfo(proj,shot)
-for shotinfo in shotinfo_list:
-	count -= 1
-	srfpath = "Z:\\%s\\assets\\char\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(proj,shotinfo.asset_id,shotinfo.var['look'],shotinfo.asset_id,shotinfo.var['look'])
-	anipath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\geocache\\%s\\%s_geocache_%s.abc"%(proj,shot[0:3],shot,shotinfo.asset_name,shot,shotinfo.asset_name)
-	if os.path.isfile(srfpath) and os.path.isfile(anipath):
-		cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = shotinfo.asset_name)
-		cmds.reorder( '%s:Root_grp'%shotinfo.asset_name, r=count )
-		cmds.AbcImport(anipath, mode= True, connect ='%s:Root_grp' %(shotinfo.asset_name))
-		auto_copy_uv(shotinfo.asset_name)
-cam_path = get_cam_abc(proj,shot)
-if cam_path:
-	cmds.file(cam_path,type = "Alembic",r= True)
-else:
-	print "No such camera File"
-fps = get_proj_fps(proj)
-cmds.currentUnit(time=fps)
-cmds.playbackOptions(minTime=int(timeRange[0])-2)
-cmds.playbackOptions(maxTime=int(timeRange[1])+2)
+def get_shot_assets(type,shotinfo):
+	info_list = shotinfo[type]
+	typeAssetlist = []
+	for info in info_list:
+		assetName = info['name'] + (str(info['id']) if info['id'] else '')
+		typeAssetlist.append(assetName)
+	return typeAssetlist
+
+def get_asset_outline(proj,shot):
+	shotinfo = get_shot_info(proj,shot)
+	prp_list = get_shot_assets('prop',shotinfo)
+	char_list = get_shot_assets('char',shotinfo)
+	set_list = get_shot_assets('set',shotinfo)
+	for prp in prp_list:
+		print 'root/prp/%s'%prp
+	for char in char_list:
+		print 'root/char/%s'%char
+	for sets in set_list:
+		print 'root/set/%s'%char
+
+def ref_asset_srf(proj,shot,assetType,asset_name,look):
+	assetName = asset_name.rsrip(string.digits)
+	srfpath = "Z:\\%s\\assets\\char\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(proj,assetName,look,assetName,look)
+	cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = asset_name)
+	cmds.group('%s:Root_grp'%asset_name,parent = '%s_%s'%(asset_name,assetType))
+
+def group_type_asset(assetType,assetName):
+	if not cmds.objExists('|root|%s'%assetType):
+		cmds.group(em=True,name = assetType)
+		cmds.group(assetType,parent = 'root')
+	cmds.group('%s_%s'%(assetName,assetType),parent = assetType)
+
+def merge_cache(proj,shot,assetName,hair=False):
+	anipath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\geocache\\%s\\%s_geocache_%s.abc"%(proj,shot[0:3],shot,assetName,shot,assetName)
+	cmds.AbcImport(anipath, mode= True, connect ='%s:Root_grp' %(assetName))
+	if hair:
+		hairPath = 'Z:/%s/shots/ep001/%s/%s/cache/haircache/%s/geom/{%s}_geom.abc'%(proj,shot[0:3],shot,assetName,assetName)
+		cmds.AbcImport(hairPath, mode= True, connect ='%s:Root_grp' %(assetName))
+
+
+def ref_cam_cache(proj,shot):
+	cam_path = get_cam_abc(proj,shot)
+	if cam_path:
+		cmds.file(cam_path,type = "Alembic",r= True)
+	else:
+		print "No such camera File"
+
+def set_time_range(proj,shot):
+	fps = get_proj_fps(proj)
+	timeRange = get_shot_time(proj,shot)
+	cmds.currentUnit(time=fps)
+	cmds.playbackOptions(minTime=int(timeRange[0])-2)
+	cmds.playbackOptions(maxTime=int(timeRange[1])+2)
+
+
+# if __name__ == "__main__":
+#     app = QtWidgets.QApplication(sys.argv)
+#     app.setQuitOnLastWindowClosed(False)
+#     ex = MainSystem()
+#     ex.hide()
+#     sys.exit(app.exec_())
+	# proj = 'smxm'
+	# shot = 'xuz003'
+	# shotinfo = get_shot_info(proj,shot)
+
+
+# 'Z:/smxm/shots/ep001/xuz/xuz003/cache/haircache/c001001xiongmaox/geom/'
+# timeRange = get_shot_time(proj,shot)
+# count = 1 
+# shotinfo_list = get_shotinfo(proj,shot)
+# for shotinfo in shotinfo_list:
+# 	count -= 1
+# 	srfpath = "Z:\\%s\\assets\\char\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(proj,shotinfo.asset_id,shotinfo.var['look'],shotinfo.asset_id,shotinfo.var['look'])
+# 	anipath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\geocache\\%s\\%s_geocache_%s.abc"%(proj,shot[0:3],shot,shotinfo.asset_name,shot,shotinfo.asset_name)
+# 	if os.path.isfile(srfpath) and os.path.isfile(anipath):
+# 		cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = shotinfo.asset_name)
+# 		cmds.reorder( '%s:Root_grp'%shotinfo.asset_name, r=count )
+# 		cmds.AbcImport(anipath, mode= True, connect ='%s:Root_grp' %(shotinfo.asset_name))
+# 		auto_copy_uv(shotinfo.asset_name)
+# cam_path = get_cam_abc(proj,shot)
+# if cam_path:
+# 	cmds.file(cam_path,type = "Alembic",r= True)
+# else:
+# 	print "No such camera File"
+# fps = get_proj_fps(proj)
+# cmds.currentUnit(time=fps)
+# cmds.playbackOptions(minTime=int(timeRange[0])-2)
+# cmds.playbackOptions(maxTime=int(timeRange[1])+2)
+
+# import os
+# import glob
+# projPath = 'Z:\\smxm\\shots\\ep001'
+# print os.listdir(projPath)
+# print os.path.dirname(projPath)
+
+# # "Z:\\smxm\\shots\\ep001\\ccj\\ccj004\\set\\"
+# searchPath = 'Z:\\smxm\\shots\\ep001\\ccj\\ccj004\\set\\'
+
+# get_shot_info(proj,shot)
+# mel.eval('group -n -c001001xiongmaox c001001xiongmaox_look_main:Root_grp')
+# parent c007002xniujiaol_char char
+
+# 'Z:\smxm\shots\ep001\xuz\xuz003\set\scene\ok'
+# import glob
+
+# # for fileName in glob.glob( r'Z:\\smxm\\shots\\ep001\\*\\set\\scene\\ok\\*.abc'):
+# # for fileName in glob.glob(r"Z:/smxm/shots/ep001/*/*/cache/geocache/*/*.abc"):
+# # 	print fileName
+# for fileName in glob.glob(r"Z:/smxm/shots/ep001/*/*/set/scene/ok/*.abc"):
+# 	print fileName
+
+# f= glob.iglob(r'../*.py')
+# print f
+# "Z:\smxm\shots\ep001\xuz\xuz003\cache\geocache\c011001zhushu\xuz003_geocache_c011001zhushu.abc"
+
+from PySide.QtCore import *
+from PySide.QtGui import *
+
+class Form(QWidget):
+
+
+	def __init__(self):
+		super(Form,self).__init__()
+		self.initUI()
+
+	def initUI(self):
+		# cBoxProj = QComboBox(self)
+		# cBoxProj.resize = (200,100)
+		# cBoxProj.move(110,8)
+		# cBoxProj.addItem('smxm')
+		self.addLabel()
+		self.addLine()
+		self.addcombBox()
+		self.setWindowTitle("Light Shot Maker")
+		self.resize(400,100)
+		self.move(500,200)
+		self.show()
+
+	def addLabel(self):
+		labelProj = QLabel('PROJECT',self)
+		labelProj.resize = (100,100)
+		labelProj.move(20,10)
+		labelSeq = QLabel('SEQ',self)
+		labelSeq.resize = (100,100)
+		labelSeq.move(20,30)
+		labelShot = QLabel('SHOT',self)
+		labelShot.resize = (100,100)
+		labelShot.move(20,50)
+
+	def addLine(self):
+		lineProj = QFrame(self)
+		lineProj.setGeometry(QRect(65,9,10,14))
+		lineProj.setFrameShape(QFrame.VLine)
+		lineProj.setFrameShadow(QFrame.Raised)
+		lineSeq = QFrame(self)
+		lineSeq.setGeometry(QRect(65,29,10,14))
+		lineSeq.setFrameShape(QFrame.VLine)
+		lineSeq.setFrameShadow(QFrame.Raised)
+		lineShot = QFrame(self)
+		lineShot.setGeometry(QRect(65,49,10,14))
+		lineShot.setFrameShape(QFrame.VLine)
+		lineShot.setFrameShadow(QFrame.Raised)
+
+	def addcombBox(self):
+		cBoxProj = QComboBox(self)
+		cBoxProj.setGeometry(QRect(90,9,80,20))
+		cBoxProj.addItem('smxm')
+		cBoxSeq = QComboBox(self)
+		cBoxSeq.setGeometry(QRect(90,29,80,20))
+		cBoxSeq.addItem('ep01')
+		cBoxShot = QComboBox(self)
+		cBoxShot.setGeometry(QRect(90,49,80,20))
+		cBoxShot.setEditable(True)
+
+		cBoxShot.addItems('a')
+		cBoxProj.currentIndexChanged.connect(self.tmp)
+
+		# completer = QCompleter(self)
+		# completer.setCompletionMode(QCompleter.UnfilteredPopupCompletion)
+		# cBoxShot.setCompleter(completer)
+
+		# cBoxShot.addItem('a')
+  #       cBoxShot.addItem('ab')
+  #       cBoxShot.addItem('abc')
+		# cBoxShot.addItem('smxm')
+
+if __name__ == "__main__":
+	app = QApplication(sys.argv)
+	lgtShotMaker = Form()
+	sys.exit(app.exec_())
 
