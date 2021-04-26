@@ -42,7 +42,7 @@
 #     @property
 #     def height(self):
 #         return self._height
-    
+	
 #     @width.setter
 #     def width(self,screenwidth):
 #         self.screenwidth=screenwidth
@@ -59,7 +59,7 @@
 # s.width = 1024
 # s.height= 768
 # print(s.resolution)
-    
+	
 # class Animal(object):
 #     pass
 
@@ -103,7 +103,7 @@
 
 # s=Student('Michael')
 # print(s)
-    
+	
 # class Fib(object):
 #     def __init__(self):
 #         self.a, self.b=0,1
@@ -623,9 +623,9 @@
 #                 print asset_xml_path
 #                 print latest_xml
 #                 print 'Yes'
-                # asset.set('refFile',latest_xml)
-    # root.write(new_path_xml)
-    # return new_path_xml
+				# asset.set('refFile',latest_xml)
+	# root.write(new_path_xml)
+	# return new_path_xml
 # tstpath1 = tstpath.replace('xml','tmp')
 # print tstpath
 
@@ -773,7 +773,7 @@
 
 # copy_output_task():
 
-    
+	
 
 #     look_file_bake
 
@@ -801,12 +801,12 @@
 
 # for obj_attr in subdiv_objects:
 #     if(float(obj_attr['iter']) > 3):
-        # attr_elem.set('value', '3')
-        # attr_elem.set('value_origin', obj_attr.get('iter',''))
-    #     print 'over 3'
-    # else:
-    #     print 'ok'
-        # attr_elem.set('value', obj_attr.get('iter',''))
+		# attr_elem.set('value', '3')
+		# attr_elem.set('value_origin', obj_attr.get('iter',''))
+	#     print 'over 3'
+	# else:
+	#     print 'ok'
+		# attr_elem.set('value', obj_attr.get('iter',''))
 # print int('5')
 # import os,sys
 # preview_mov = '/mnt/proj/projects/tst/asset/prp/chair_b/srf/publish/chair_b.srf.surfacing.v037/preview/chair_b.srf.surfacing.v037.srf_publish.mov'
@@ -1111,7 +1111,7 @@
 #                 if not selected[curr_index]:
 #                     selected[conn_index] = True
 #                     to_select.append(conn)
-                    
+					
 # pm.select(to_select,add=True)
 # rvio='/usr/local/rv/rv-Linux-x86-64-6.2.2/bin/rvio'
 # self_check_folder = '/home/jiayi/Desktop/tst'
@@ -1860,48 +1860,48 @@
 #         super(MainWindow,self).__init__(parent)  
 #         # f=QFont("ZYSong18030",120)  
 #         # self.setFont(f)  
-          
+		  
 #         self.setWindowTitle("Image Processor")  
 #         self.imageLabel=QLabel()  
 #         self.imageLabel.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)   
 #         self.imageLabel.setScaledContents(True)  
-          
+		  
 #         self.setCentralWidget(self.imageLabel)  
 #         self.image=QImage()  
 
 #         self.createActions()  
 #         self.createMenus()  
 #         self.createToolBars()  
-          
+		  
 #     def createActions(self):  
 #         self.zoominAction=QAction(QIcon("/mnt/public/Share/zhaojiayi/photos/pokecoin.png"),self.tr("+"),self)  
 #         self.zoominAction.setShortcut("Ctrl+P")  
 #         self.zoominAction.setStatusTip(self.tr("="))  
 #         self.connect(self.zoominAction,SIGNAL("triggered()"),self.slotZoomin)  
-          
+		  
 #         self.deflateAction=QAction(QIcon("/home/huazhuo/Pictures/icon/Minus.png"),self.tr("-"),self)  
 #         self.deflateAction.setShortcut("Ctrl+A")  
 #         self.deflateAction.setStatusTip(self.tr("-"))  
 #         self.connect(self.deflateAction,SIGNAL("triggered()"),self.slotDeflate)  
-          
+		  
 #         self.circumgyrate=QAction(QIcon("/home/huazhuo/Pictures/icon/rotate.png"),self.tr("*"),self)  
 #         self.circumgyrate.setShortcut("Ctrl+B")  
 #         self.circumgyrate.setStatusTip(self.tr("*"))  
 #         self.connect(self.circumgyrate,SIGNAL("triggered()"),self.slotCircumgyrate)  
-          
+		  
 #     def createMenus(self):  
 #         PrintMenu=self.menuBar().addMenu(self.tr("+-"))  
 #         PrintMenu.addAction(self.zoominAction)  
 #         PrintMenu.addAction(self.deflateAction)  
 #         circumgyrateMenu=self.menuBar().addMenu(self.tr("*"))  
 #         circumgyrateMenu.addAction(self.circumgyrate)  
-          
+		  
 #     def createToolBars(self):  
 #         fileToolBar=self.addToolBar("Print")  
 #         fileToolBar.addAction(self.zoominAction)  
 #         fileToolBar.addAction(self.deflateAction)  
 #         fileToolBar.addAction(self.circumgyrate)  
-      
+	  
 #     def slotZoomin(self):  
 #         if self.image.isNull():  
 #             return  
@@ -1910,7 +1910,7 @@
 #         self.image=self.image.transformed(martix);  
 #         self.imageLabel.setPixmap(QPixmap.fromImage(self.image))  
 #         self.resize(self.image.width(),self.image.height())   
-      
+	  
 #     def slotDeflate(self):  
 #         if self.image.isNull():  
 #             return  
@@ -1919,7 +1919,7 @@
 #         self.image=self.image.transformed(martix);  
 #         self.imageLabel.setPixmap(QPixmap.fromImage(self.image))  
 #         self.resize(self.image.width(),self.image.height())   
-      
+	  
 #     def slotCircumgyrate(self):  
 #         if self.image.isNull():  
 #             return  
@@ -1928,7 +1928,7 @@
 #         self.image=self.image.transformed(martix);  
 #         self.imageLabel.setPixmap(QPixmap.fromImage(self.image))  
 #         self.resize(self.image.width(),self.image.height())   
-                  
+				  
 # app=QApplication(sys.argv)  
 # window=MainWindow()  
 # window.show()  
@@ -2432,11 +2432,11 @@
 #             prune_node = NodegraphAPI.CreateNode('Prune',shotrender_node)
 #             prune_node.getParameter('cel').setValue(prune_path,0)
 #             n.getOutputPortByIndex(0).connect(prune_node.getInputPortByIndex(0))
-            
+			
 #             inputPort0 = merge_node.addInputPort('i0')
 #             inputPort1 = merge_node.addInputPort('i1')
 #             plantcache_node.getOutputPortByIndex(0).connect(inputPort0)
-            
+			
 #             prune_node.getOutputPortByIndex(0).connect(inputPort1)
 #             for v in Var_nodes:
 #                 if v.getName().startswith(shot):
@@ -2472,41 +2472,41 @@
 #     print uv_file
 #     all_uvs_data = np.load(uv_file)
 
-    #print all_uvs_data.keys()
-    # UV_list = all_uvs_data['UV_list']
-    # UVIndices=all_uvs_data['UVIndices']
+	#print all_uvs_data.keys()
+	# UV_list = all_uvs_data['UV_list']
+	# UVIndices=all_uvs_data['UVIndices']
 
-    # edge_list=all_uvs_data['edge_list']
-    # uv_edge_list=[]
-    # for i in range(len(edge_list)):
-    #     point_a_index=edge_list[i][0]
-    #     point_b_index=edge_list[i][1]
+	# edge_list=all_uvs_data['edge_list']
+	# uv_edge_list=[]
+	# for i in range(len(edge_list)):
+	#     point_a_index=edge_list[i][0]
+	#     point_b_index=edge_list[i][1]
 
-    #     point_a_Indices=UVIndices[point_a_index]
-    #     point_b_Indices=UVIndices[point_b_index]
-    #     a_uv=None
-    #     b_uv=None
-    #     if uv_not_cut(point_a_Indices):
-    #         a_uv=UV_list[point_a_index]
-    #     if uv_not_cut(point_b_Indices):
+	#     point_a_Indices=UVIndices[point_a_index]
+	#     point_b_Indices=UVIndices[point_b_index]
+	#     a_uv=None
+	#     b_uv=None
+	#     if uv_not_cut(point_a_Indices):
+	#         a_uv=UV_list[point_a_index]
+	#     if uv_not_cut(point_b_Indices):
 
-    #         b_uv = UV_list[point_b_index]
+	#         b_uv = UV_list[point_b_index]
 
-    #     if  a_uv is not None and b_uv is not None:
+	#     if  a_uv is not None and b_uv is not None:
 
-    #         a_uv_point=[a_uv[0][0],a_uv[1][0]]
-    #         b_uv_point=[b_uv[0][0],b_uv[1][0]]
+	#         a_uv_point=[a_uv[0][0],a_uv[1][0]]
+	#         b_uv_point=[b_uv[0][0],b_uv[1][0]]
 
-    #         uv_edge_list.append([a_uv_point,b_uv_point])
+	#         uv_edge_list.append([a_uv_point,b_uv_point])
 
-    # uv_edge_len=len(uv_edge_list)
-    # for i  in range(uv_edge_len-1):
-    #     for j in range(i+1 ,uv_edge_len):
-    #         if cross_2Seg.seg_intersect(uv_edge_list[i][0],uv_edge_list[i][1],uv_edge_list[j][0],uv_edge_list[j][1]):
+	# uv_edge_len=len(uv_edge_list)
+	# for i  in range(uv_edge_len-1):
+	#     for j in range(i+1 ,uv_edge_len):
+	#         if cross_2Seg.seg_intersect(uv_edge_list[i][0],uv_edge_list[i][1],uv_edge_list[j][0],uv_edge_list[j][1]):
 
-    #             return True
+	#             return True
 
-    # return False
+	# return False
 
 # for uvs in all_uv_file_list[i:]:
 #     # print i
@@ -2630,27 +2630,27 @@
 #     new_arnold.checkDynamicParameters()
 #     new_arnold.setName(new_name)
 #     new_arnold = NodegraphAPI.GetNode(new_name)
-    
+	
 #     alsurf_node = all
 #     std_srf_node = new_arnold
 #     switch_out_ports(alsurf_node,std_srf_node)
-    # curr_dict = PORT_DICT
-    # all_ports_in = alsurf_node.getInputPorts()
-    # print alsurf_name
-    # for port_in in all_ports_in:
-    #     port_conn = port_in.getConnectedPorts()
-    #     if port_conn:
-    #         port_n = port_in.getName()
-    #         print 'the port name is '
-    #         print port_n
-    #         if port_n in curr_dict:
-    #             print 'alsurf inport name: ', port_n
-    #             NodegraphAPI.SetNodeEdited(std_srf_node, 1, 1)
-    #             new_port_in = std_srf_node.getInputPort(curr_dict[port_n])
-    #             print 'arnold 5 new import name', new_port_in
-    #             for each_conn in port_conn:
-    #                 print each_conn.getName()
-    #                 each_conn.connect(new_port_in)
+	# curr_dict = PORT_DICT
+	# all_ports_in = alsurf_node.getInputPorts()
+	# print alsurf_name
+	# for port_in in all_ports_in:
+	#     port_conn = port_in.getConnectedPorts()
+	#     if port_conn:
+	#         port_n = port_in.getName()
+	#         print 'the port name is '
+	#         print port_n
+	#         if port_n in curr_dict:
+	#             print 'alsurf inport name: ', port_n
+	#             NodegraphAPI.SetNodeEdited(std_srf_node, 1, 1)
+	#             new_port_in = std_srf_node.getInputPort(curr_dict[port_n])
+	#             print 'arnold 5 new import name', new_port_in
+	#             for each_conn in port_conn:
+	#                 print each_conn.getName()
+	#                 each_conn.connect(new_port_in)
 
 
 # def switch_out_ports(alsurf_node, std_srf_node):
@@ -2967,7 +2967,7 @@
 #                 floAssetDict.setdefault(type,[]).append(namespace)
 #         else:
 #             aniAssetDict.setdefault(type,[]).append(namespace)
-    
+	
 #     assetList=[aniAssetDict, floAssetDict]
 #     print aniAssetDict
 #     print floAssetDict
@@ -3072,7 +3072,7 @@
 #                 floAssetDict.setdefault(type,[]).append(namespace)
 #         else:
 #             aniAssetDict.setdefault(type,[]).append(namespace)
-    
+	
 #     assetList=[aniAssetDict, floAssetDict]
 #     return assetList
 
@@ -3484,12 +3484,12 @@
 #         chr_list.append(ch['code'])
 #         if ch['code'].startswith('w'):
 #             print ch['code']
-    # print chr_list
-    # init = psgp.ShotGunProj(proj)
-    # for c in chr_list:
-    #     if init.parent_is_asm(c):
-    #         asm_list.append(c)
-    # return asm_list
+	# print chr_list
+	# init = psgp.ShotGunProj(proj)
+	# for c in chr_list:
+	#     if init.parent_is_asm(c):
+	#         asm_list.append(c)
+	# return asm_list
 
 
 # def parent_is_asm(asset):
@@ -3626,7 +3626,7 @@
 #     def __init__(self):
 #         self.parent = 'I\'m the parent.'
 #         print ('Parent')
-    
+	
 #     def bar(self,message):
 #         print ("%s from Parent" % message)
  
@@ -3635,7 +3635,7 @@
 #         # super(FooChild,self) 首先找到 FooChild 的父类（就是类 FooParent），然后把类B的对象 FooChild 转换为类 FooParent 的对象
 #         super(FooChild,self).__init__()    
 #         print ('Child')
-        
+		
 #     def bar(self,message):
 #         super(FooChild, self).bar(message)
 #         print ('Child bar fuction')
@@ -4233,7 +4233,7 @@
 #             wform_list = wform.split(' ')
 #             if wform_list[-4] == '0.0' and wform_list[-3] == '0.0' and wform_list[-2] == '0.0':
 #                 print wform
-            # print wform_list[-4] + " " + wform_list[-3] + " " + wform_list[-2]
+			# print wform_list[-4] + " " + wform_list[-3] + " " + wform_list[-2]
 
 # shot 
 # f30630
@@ -4710,10 +4710,10 @@
 # #     userEntity=sg.find('Group',[['code','is','LGT_Leader']],['id','code'])[0]
 #     userEntity_yy = sg.find('HumanUser',[['login','is','yangyang']],['id','name'])[0]
 #     print userEntity_yy
-    
+	
 #     uninit_shotgun()
 # def get_frame_num():
-    
+	
 
 # get_people()
 
@@ -4747,7 +4747,7 @@
 # def GetLgtRigShotList(proj,sequence,priority):
 #     shotlist = GetshotlistFromShotGun(proj,sequence,priority=priority)
 #     lgtrig_list = []
-    
+	
 #     for shot in shotlist:
 #         filter_data=[
 #             ['entity', 'name_is', shot],
@@ -4897,27 +4897,27 @@
 # import os
 # import re
 import sys
-# import copy
-# import itertools
-# import uuid
-# import copy
-# import itertools
-# import pprint
-# import openpyxl
-# import maya.cmds as cmds
-# import string
-# sys.path.append('D:\\zhaojiayi\\Documents\\coco')
-# from cocoPipeline.lib.python.shotLib import getShotMessage
-# from cocoPipeline.lib.python.assetLib import asset
-# from cocoPipeline.bin.assetInShot import Function
-# from cocoPipeline.lib.python.shotLib import castingLib
-# from cocoPipeline.lib.python.assetLib import asset
-# reload(getShotMessage)
-# reload(asset)
-# reload(castingLib)
-# import cocoPipeline.lib.python.ftrackLib.ftrackSession as ftrackSession
-# reload(ftrackSession)
-from Qt import QtGui, QtWidgets, QtCore
+import copy
+import itertools
+import uuid
+import copy
+import itertools
+import pprint
+import openpyxl
+import maya.cmds as cmds
+import string
+sys.path.append('D:\\zhaojiayi\\Documents\\coco')
+from cocoPipeline.lib.python.shotLib import getShotMessage
+from cocoPipeline.lib.python.assetLib import asset
+from cocoPipeline.bin.assetInShot import Function
+from cocoPipeline.lib.python.shotLib import castingLib
+from cocoPipeline.lib.python.assetLib import asset
+reload(getShotMessage)
+reload(asset)
+reload(castingLib)
+import cocoPipeline.lib.python.ftrackLib.ftrackSession as ftrackSession
+reload(ftrackSession)
+
 
 
 def get_shotinfo(project,shot,sets=False):
@@ -4996,8 +4996,9 @@ def get_proj_fps(proj):
 	return time_str
 
 def get_shot_info(proj,shot):
-	# xlsx_path = "Z:\\%s\\database\\casting\\main.xlsx"%proj
-	xlsx_path = "C:\\Users\\zhaojiayi\\Desktop\\tstfile\\main.xlsx"
+	xlsx_path = "Z:\\%s\\database\\casting\\main.xlsx"%proj
+	print xlsx_path
+	# xlsx_path = "C:\\Users\\zhaojiayi\\Desktop\\tstfile\\main.xlsx"
 	shotinfo = Function.getShot(xlsx_path, shot)
 	return shotinfo
 
@@ -5115,29 +5116,48 @@ def set_time_range(proj,shot):
 # f= glob.iglob(r'../*.py')
 # print f
 # "Z:\smxm\shots\ep001\xuz\xuz003\cache\geocache\c011001zhushu\xuz003_geocache_c011001zhushu.abc"
+import os
+import maya.OpenMayaUI as omui
+# import shiboken2 as shiboken
 
-from PySide.QtCore import *
-from PySide.QtGui import *
+# from Qt.QtCore import *
+# from Qt.QtGui import *
+# from Qt.QtWidgets import *
+from Qt import QtWidgets, QtCore
 
-class Form(QWidget):
+from PySide2 import QtWidgets, QtCore 
+# from PySide2 import Signal
+import time
+import threading
 
+class Form(QtWidgets.QMainWindow):
 
-	def __init__(self):
-		super(Form,self).__init__()
+	_signal = QtCore.Signal(str,str)
+
+	def __init__(self,parent=None):
+		super(Form,self).__init__(parent)
 		self.initUI()
 
 	def initUI(self):
-		# cBoxProj = QComboBox(self)
-		# cBoxProj.resize = (200,100)
-		# cBoxProj.move(110,8)
-		# cBoxProj.addItem('smxm')
-		self.addLabel()
-		self.addLine()
+		# self.addLabel()
+		# self.addLine()
+		self.setInitdata()
 		self.addcombBox()
+		# self.addtextEdit()
+		self.addpushButton()
+		self.currentTime = time.time()
+		self.setSignal()
 		self.setWindowTitle("Light Shot Maker")
-		self.resize(400,100)
+		self.slot_initCurrentTask(0)
+		self.resize(500,80)
 		self.move(500,200)
-		self.show()
+		self.run = False
+		# self.show()
+
+	def setInitdata(self):
+		self.serverRoot = os.environ['SERVER_ROOT'].capitalize()
+		self.currentTime = time.time()
+
 
 	def addLabel(self):
 		labelProj = QLabel('PROJECT',self)
@@ -5163,32 +5183,190 @@ class Form(QWidget):
 		lineShot.setGeometry(QRect(65,49,10,14))
 		lineShot.setFrameShape(QFrame.VLine)
 		lineShot.setFrameShadow(QFrame.Raised)
+		lineShot = QFrame(self)
+		lineShot.setGeometry(QRect(65,49,10,14))
+		lineShot.setFrameShape(QFrame.VLine)
+		lineShot.setFrameShadow(QFrame.Raised)
 
 	def addcombBox(self):
-		cBoxProj = QComboBox(self)
-		cBoxProj.setGeometry(QRect(90,9,80,20))
-		cBoxProj.addItem('smxm')
-		cBoxSeq = QComboBox(self)
-		cBoxSeq.setGeometry(QRect(90,29,80,20))
-		cBoxSeq.addItem('ep01')
-		cBoxShot = QComboBox(self)
-		cBoxShot.setGeometry(QRect(90,49,80,20))
-		cBoxShot.setEditable(True)
+		self.cBoxProj = QComboBox(self)
+		self.cBoxProj.setGeometry(QRect(20,9,80,20))
+		self.cBoxSeq = QComboBox(self)
+		self.cBoxSeq.setGeometry(QRect(110,9,80,20))
+		self.cBoxShots = QComboBox(self)
+		self.cBoxShots.setGeometry(QRect(200,9,80,20))
+		self.cBoxShot = QComboBox(self)
+		self.cBoxShot.setGeometry(QRect(290,9,80,20))
 
-		cBoxShot.addItems('a')
-		cBoxProj.currentIndexChanged.connect(self.tmp)
+	def addtextEdit(self):
+		tEditShot = QLineEdit(self)
+		tEditShot.setGeometry(QRect(90,49,80,20))
 
-		# completer = QCompleter(self)
-		# completer.setCompletionMode(QCompleter.UnfilteredPopupCompletion)
-		# cBoxShot.setCompleter(completer)
+	def addpushButton(self):
+		self.pButtonGet = QPushButton('Get',self)
+		self.pButtonGet.setGeometry(QRect(380,29,80,20))
 
-		# cBoxShot.addItem('a')
-  #       cBoxShot.addItem('ab')
-  #       cBoxShot.addItem('abc')
-		# cBoxShot.addItem('smxm')
+	def setSignal(self):
+		self.cBoxProj.currentTextChanged.connect(lambda: self.slot_initCurrentTask(1))
+		self.cBoxSeq.currentTextChanged.connect(lambda: self.slot_initCurrentTask(2))
+		self.cBoxShots.currentTextChanged.connect(lambda: self.slot_initCurrentTask(3))
+		self.pButtonGet.clicked.connect(self.popWindow)
 
-if __name__ == "__main__":
-	app = QApplication(sys.argv)
-	lgtShotMaker = Form()
-	sys.exit(app.exec_())
+	def slot_initCurrentTask(self, order):
+		time_start = time.time()
+		time_space = time_start - self.currentTime
 
+		if time_space > 0.6 and self.run == False:
+			thread = threading.Thread(target=self.call_reloadCurrentFunction)
+			thread.start()
+		if order == 0:
+			self.cBoxProj.clear()
+			ignoreProjectList = ['smxm']
+			for item in os.listdir(self.serverRoot+'/'):
+				if item in ignoreProjectList:
+					self.cBoxProj.addItem(item)	
+		if order == 1:
+			self.projectName = self.cBoxProj.currentText()
+			self.cBoxSeq.clear()
+			self.projPath = self.serverRoot+'/' + self.projectName + '/shots/' 
+			for item in sorted(os.listdir(self.projPath)):
+				self.cBoxSeq.addItem(item)
+		if order == 2:
+			self.seq = self.cBoxSeq.currentText()
+			self.cBoxShots.clear()
+			self.seqPath = self.projPath + self.seq + '/'
+			for item in sorted(os.listdir(self.seqPath)):
+				self.cBoxShots.addItem(item)
+		if order == 3:
+			self.shots = self.cBoxShots.currentText()
+			self.cBoxShot.clear()
+			self.shotPath = self.seqPath + self.shots + '/'
+			for item in sorted(os.listdir(self.shotPath)):
+				self.cBoxShot.addItem(item)
+		self.currentTime = time.time()
+
+	def call_reloadCurrentFunction(self):
+		self.run = True
+		time.sleep(0.6)
+		self.run = False
+		self.move(500,200)
+
+	def popWindow(self):
+		self.proj = self.cBoxProj.currentText()
+		self.seq = self.cBoxSeq.currentText()
+		self.shots = self.cBoxShots.currentText()
+		self.shot = self.cBoxShot.currentText()
+		self.ui2 = Ui_Form()
+		self.ui2.getData(self.proj,self.seq,self.shots,self.shot)
+		self.ui2.show()
+
+	def set_param(self):
+		proj = self.cBoxProj.currentText()
+		seq = self.cBoxSeq.currentText()
+		shots = self.cBoxShots.currentText()
+		shot = self.cBoxShot.currentText()
+
+class Ui_Form(QtWidgets.QWidget):
+
+	def __init__(self,parent = None):
+		super(Ui_Form,self).__init__(parent)
+		self.initUI() 
+		
+
+	def initUI(self):
+		self.resize(500,500)
+		self.addtreeWidget()
+		
+
+	def addtreeWidget(self):
+		self.treeMain = QTreeWidget(self)
+		self.treeMain.setGeometry(QRect(10,10,400,400))
+		self.treeMain.itemChanged.connect(self.autoCheckable)
+
+	def settreeWidget(self):
+		self.treeMain.setColumnCount(2)
+		self.headerList = ['TYPE','NAME']
+		self.treeMain.setHeaderLabels(self.headerList)
+		self.root_char = QTreeWidgetItem(self.treeMain)
+		self.root_char.setText(0,'char')
+		self.root_char.setCheckState(0,Qt.Checked)
+		self.root_prop = QTreeWidgetItem(self.treeMain)
+		self.root_prop.setText(0,'prop')
+		self.root_prop.setCheckState(0,Qt.Checked)
+		self.root_set = QTreeWidgetItem(self.treeMain)
+		self.root_set.setText(0,'set')
+		self.root_set.setCheckState(0,Qt.Checked)
+		shotinfo = self.get_assets()
+		char_list = shotinfo['char']
+		set_list = shotinfo['set']
+		prop_list = shotinfo['prop']
+
+		for char in char_list:
+			assetnameItem = char['name'] + (str(char['id']) if char['id'] else '')
+			child = QTreeWidgetItem()
+			child.setText(1,assetnameItem)
+			child.setCheckState(1,Qt.Checked)
+			self.root_char.addChild(child)
+		for sets in set_list:
+			assetnameItem = sets['name'] + (str(sets['id']) if sets['id'] else '')
+			child = QTreeWidgetItem()
+			child.setText(1,assetnameItem)
+			child.setCheckState(1,Qt.Checked)
+			self.root_set.addChild(child)
+		for prop in prop_list:
+			assetnameItem = prop['name'] + (str(prop['id']) if prop['id'] else '')
+			child = QTreeWidgetItem()
+			child.setText(1,assetnameItem)
+			child.setCheckState(1,Qt.Checked)
+			self.root_prop.addChild(child)
+
+	def autoCheckable(self):
+		
+		for i in range(self.treeMain.topLevelItemCount()):
+			item =  self.treeMain.topLevelItem(i)
+			topitemState = item.checkState(0)
+			for i in range(item.childCount()):
+				childItem = item.child(i)
+				childItem.setCheckState(1,topitemState)
+
+
+
+
+
+
+
+
+
+
+	def get_assets(self):
+		print self.proj
+		print self.shot
+		shotinfo = get_shot_info(self.proj,self.shot)
+		return shotinfo
+
+	def getData(self,proj='1',seq= '1',shots = '1',shot = '1'):
+		self.proj = proj
+		self.seq = seq
+		self.shots = shots
+		self.shot = shot
+		self.settreeWidget()
+
+	# def getData(self):
+	# 	data_str = self.proj
+		# print Form.proj,Form.seq,Form.shots,Form.shot
+
+
+# def get_shot_assets(proj,seq,shots,shot):
+# 	print proj,seq,shots,shot
+# 	app = QtWidgets.QApplication.instance()
+# 	uiSide = assetList()
+# 	uiSide.show()
+
+
+def main():
+	app = QtWidgets.QApplication.instance()
+	if app == None:
+		app = QtWidgets.QApplication(sys.argv)
+	ui = Form()
+	ui.show()
+	app.exec_()
