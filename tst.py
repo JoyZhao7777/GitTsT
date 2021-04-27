@@ -4975,9 +4975,27 @@ def auto_copy_uv(asset_name):
 		else:
 			cmds.select(mesh)
 			uvsets_list = cmds.polyUVSet( query=True, currentUVSet=True)
-			if d_uvset not in uvsets_list:
-				print mesh
-				cmds.polyCopyUV(mesh,uvSetNameInput = uvsets_list[0],uvSetName= d_uvset)
+			if uvsets_list:
+				if d_uvset not in uvsets_list:
+					cmds.polyCopyUV(mesh,uvSetNameInput = uvsets_list[0],uvSetName= d_uvset)
+
+def check_errorUv_asset():
+	char_path = 'Z:\\smxm\\assets\\char'
+	asset_list = os.listdir(char_path)
+	print asset_list
+	srfpathList = []
+	for asset in asset_list:
+		srf_path = 'Z:\\smxm\\assets\\char\\%s\\surface\\look\\main\\ok\\%s_look_main.ma'%(asset,asset)
+		if os.path.isfile(srf_path):
+			srfpathList.append(srf_path)
+			cmds.file(srf_path,r = True,type = 'mayaAscii',namespace = asset)
+			print '--------------------------------------------'
+			auto_copy_uv(asset)
+			print '----------------------------------------------'
+
+
+
+
 
 def get_proj_fps(proj):
 	session = ftrackSession.createSession()
@@ -5023,24 +5041,34 @@ def get_asset_outline(proj,shot):
 		print 'root/set/%s'%char
 
 def ref_asset_srf(proj,shot,assetType,asset_name,look):
-	assetName = asset_name.rsrip(string.digits)
-	srfpath = "Z:\\%s\\assets\\char\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(proj,assetName,look,assetName,look)
-	cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = asset_name)
-	cmds.group('%s:Root_grp'%asset_name,parent = '%s_%s'%(asset_name,assetType))
+	assetName = asset_name.rstrip(string.digits)
+	srfpath = "Z:\\%s\\assets\\%s\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(proj,assetType,assetName,look,assetName,look)
+	if os.path.isfile(srfpath):
+		cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = asset_name)
+		print '----------------------------------'
+		print srfpath
+		parent_group = '%s_%s'%(asset_name,assetType) 
+		cmds.group( em=True, name=parent_group )
+		cmds.parent('%s:Root_grp'%asset_name,parent_group)
 
 def group_type_asset(assetType,assetName):
-	if not cmds.objExists('|root|%s'%assetType):
-		cmds.group(em=True,name = assetType)
-		cmds.group(assetType,parent = 'root')
-	cmds.group('%s_%s'%(assetName,assetType),parent = assetType)
+	if cmds.objExists('%s_%s'%(assetName,assetType)):
+		if not cmds.objExists('|root'):
+			cmds.group(em=True,name = 'root')
+		if not cmds.objExists('|root|%s'%assetType):
+			cmds.group(em=True,name = assetType)
+			cmds.parent(assetType,'root')
+		cmds.parent('%s_%s'%(assetName,assetType),assetType)
 
 def merge_cache(proj,shot,assetName,hair=False):
 	anipath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\geocache\\%s\\%s_geocache_%s.abc"%(proj,shot[0:3],shot,assetName,shot,assetName)
+	print '=========================================='
+	print anipath
 	cmds.AbcImport(anipath, mode= True, connect ='%s:Root_grp' %(assetName))
 	if hair:
 		hairPath = 'Z:/%s/shots/ep001/%s/%s/cache/haircache/%s/geom/{%s}_geom.abc'%(proj,shot[0:3],shot,assetName,assetName)
-		cmds.AbcImport(hairPath, mode= True, connect ='%s:Root_grp' %(assetName))
-
+		if os.path.isfile(hairPath):
+			cmds.AbcImport(hairPath, mode= True, connect ='%s:Root_grp' %(assetName))
 
 def ref_cam_cache(proj,shot):
 	cam_path = get_cam_abc(proj,shot)
@@ -5056,7 +5084,7 @@ def set_time_range(proj,shot):
 	cmds.playbackOptions(minTime=int(timeRange[0])-2)
 	cmds.playbackOptions(maxTime=int(timeRange[1])+2)
 
-
+# dhd067
 # if __name__ == "__main__":
 #     app = QtWidgets.QApplication(sys.argv)
 #     app.setQuitOnLastWindowClosed(False)
@@ -5119,14 +5147,17 @@ def set_time_range(proj,shot):
 import os
 import maya.OpenMayaUI as omui
 # import shiboken2 as shiboken
-
-# from Qt.QtCore import *
-# from Qt.QtGui import *
-# from Qt.QtWidgets import *
-from Qt import QtWidgets, QtCore
-
+# from Qt import QtWidgets, QtCore,QtGui
 from PySide2 import QtWidgets, QtCore 
-# from PySide2 import Signal
+try:
+    from PySide2.QtWidgets import *
+except:
+    from PyQt5.QtWidgets import *
+    
+from Qt.QtCore import *
+from Qt.QtGui import *
+from Qt.QtWidgets import *
+
 import time
 import threading
 
@@ -5276,12 +5307,20 @@ class Ui_Form(QtWidgets.QWidget):
 	def initUI(self):
 		self.resize(500,500)
 		self.addtreeWidget()
-		
+		self.addpushButton()
+		self.set_signal()
 
 	def addtreeWidget(self):
 		self.treeMain = QTreeWidget(self)
 		self.treeMain.setGeometry(QRect(10,10,400,400))
 		self.treeMain.itemChanged.connect(self.autoCheckable)
+
+	def addpushButton(self):
+		self.pButtonBuild = QPushButton('BUILD',self)
+		self.pButtonBuild.setGeometry(QRect(420,430,70,20))
+
+	def set_signal(self):
+		self.pButtonBuild.clicked.connect(self.buildScene)
 
 	def settreeWidget(self):
 		self.treeMain.setColumnCount(2)
@@ -5320,23 +5359,12 @@ class Ui_Form(QtWidgets.QWidget):
 			child.setCheckState(1,Qt.Checked)
 			self.root_prop.addChild(child)
 
-	def autoCheckable(self):
-		
-		for i in range(self.treeMain.topLevelItemCount()):
-			item =  self.treeMain.topLevelItem(i)
+	def autoCheckable(self,item,column):
+		if item and column == 0:
 			topitemState = item.checkState(0)
 			for i in range(item.childCount()):
 				childItem = item.child(i)
 				childItem.setCheckState(1,topitemState)
-
-
-
-
-
-
-
-
-
 
 	def get_assets(self):
 		print self.proj
@@ -5351,9 +5379,36 @@ class Ui_Form(QtWidgets.QWidget):
 		self.shot = shot
 		self.settreeWidget()
 
-	# def getData(self):
-	# 	data_str = self.proj
-		# print Form.proj,Form.seq,Form.shots,Form.shot
+	def buildScene(self):
+		look = 'main'
+		asset_dict = self.get_checked_asset()
+		for asset_name in asset_dict.keys():
+			ref_asset_srf(self.proj,self.shot,str(asset_dict[asset_name]),str(asset_name),look)
+			group_type_asset(asset_dict[asset_name],asset_name)
+			merge_cache(self.proj,self.shot,asset_name,True)
+		ref_cam_cache(self.proj,self.shot)
+		set_time_range(self.proj,self.shot)
+		
+
+
+	def get_checked_asset(self):
+		asset_dict = {}
+		for i in range(self.root_char.childCount()):
+			item = self.root_char.child(i)
+			if item.checkState(1):
+				asset_dict[item.text(1)] = 'char'
+		for i in range(self.root_set.childCount()):
+			item = self.root_set.child(i)
+			if item.checkState(1):
+				asset_dict[item.text(1)] = 'set'
+		for i in range(self.root_prop.childCount()):
+			item = self.root_prop.child(i)
+			if item.checkState(1):
+				asset_dict[item.text(1)] = 'prop'
+		return asset_dict
+
+
+
 
 
 # def get_shot_assets(proj,seq,shots,shot):
@@ -5370,3 +5425,10 @@ def main():
 	ui = Form()
 	ui.show()
 	app.exec_()
+
+# import sys
+# sys.path.append(r"D:\zhaojiayi\TST\tstcode\GitTsT")
+# import tst
+# reload(tst)
+# tst.main()
+
