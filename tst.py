@@ -5041,29 +5041,46 @@ def get_asset_outline(proj,shot):
 		print 'root/set/%s'%char
 
 def ref_asset_srf(proj,shot,assetType,asset_name,look):
-	assetName = asset_name.rstrip(string.digits)
-	srfpath = "Z:\\%s\\assets\\%s\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(proj,assetType,assetName,look,assetName,look)
-	if os.path.isfile(srfpath):
-		cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = asset_name)
-		print '----------------------------------'
-		print srfpath
-		parent_group = '%s_%s'%(asset_name,assetType) 
-		cmds.group( em=True, name=parent_group )
-		cmds.parent('%s:Root_grp'%asset_name,parent_group)
+	# if assetType == 'set':
+	# 	setPath = 'Z:\\%s\\shots\\ep001\\%s\\%s\\set\\scene\\ok\\%s_scene_ok.ma'%(proj,shot[0:3],shot,shot)
+	# 	if os.path.isfile(setPath):
+	# 		cmds.file(setPath,r = True,type = 'mayaAscii',gr =True,gn = 'set')
+	# 		# file -r -type "mayaAscii" -gr  -ignoreVersion -gn "tsts" -loadReferenceDepth "all" -mergeNamespacesOnClash false -namespace "dhd067_scene_ok" 
+	# 		print '---------------------------------'
+	# 		print setPath
+	# 		# parent_group = '%s_%s'%(asset_name,assetType)
+	# 		# cmds.group( em=True, name=parent_group )
+	# 		# cmds.parent('%s:Root_grp'%asset_name,parent_group)
+	if assetType != 'set':
+		assetName = asset_name.rstrip(string.digits)
+		srfpath = "Z:\\%s\\assets\\%s\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(proj,assetType,assetName,look,assetName,look)
+		if os.path.isfile(srfpath):
+			cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = asset_name)
+			parent_group = '%s_%s'%(asset_name,assetType) 
+			cmds.group( em=True, name=parent_group )
+			cmds.parent('%s:Root_grp'%asset_name,parent_group)
 
-def group_type_asset(assetType,assetName):
-	if cmds.objExists('%s_%s'%(assetName,assetType)):
+def ref_asset_set(proj,shot):
+	setPath = 'Z:\\%s\\shots\\ep001\\%s\\%s\\set\\scene\\ok\\%s_scene_ok.ma'%(proj,shot[0:3],shot,shot)
+	if os.path.isfile(setPath):
+		cmds.file(setPath,r = True,type = 'mayaAscii',gr =True,gn = 'set')
 		if not cmds.objExists('|root'):
 			cmds.group(em=True,name = 'root')
-		if not cmds.objExists('|root|%s'%assetType):
-			cmds.group(em=True,name = assetType)
-			cmds.parent(assetType,'root')
-		cmds.parent('%s_%s'%(assetName,assetType),assetType)
+		cmds.parent('set','root')
+
+
+def group_type_asset(assetType,assetName):
+	if assetType != 'set':
+		if cmds.objExists('%s_%s'%(assetName,assetType)):
+			if not cmds.objExists('|root'):
+				cmds.group(em=True,name = 'root')
+			if not cmds.objExists('|root|%s'%assetType):
+				cmds.group(em=True,name = assetType)
+				cmds.parent(assetType,'root')
+			cmds.parent('%s_%s'%(assetName,assetType),assetType)
 
 def merge_cache(proj,shot,assetName,hair=False):
 	anipath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\geocache\\%s\\%s_geocache_%s.abc"%(proj,shot[0:3],shot,assetName,shot,assetName)
-	print '=========================================='
-	print anipath
 	cmds.AbcImport(anipath, mode= True, connect ='%s:Root_grp' %(assetName))
 	if hair:
 		hairPath = 'Z:/%s/shots/ep001/%s/%s/cache/haircache/%s/geom/{%s}_geom.abc'%(proj,shot[0:3],shot,assetName,assetName)
@@ -5073,7 +5090,8 @@ def merge_cache(proj,shot,assetName,hair=False):
 def ref_cam_cache(proj,shot):
 	cam_path = get_cam_abc(proj,shot)
 	if cam_path:
-		cmds.file(cam_path,type = "Alembic",r= True)
+		namespace_cam = '%s_cam'%shot
+		cmds.file(cam_path,type = "Alembic",r= True,namespace = namespace_cam)
 	else:
 		print "No such camera File"
 
@@ -5339,32 +5357,40 @@ class Ui_Form(QtWidgets.QWidget):
 		char_list = shotinfo['char']
 		set_list = shotinfo['set']
 		prop_list = shotinfo['prop']
-
-		for char in char_list:
-			assetnameItem = char['name'] + (str(char['id']) if char['id'] else '')
-			child = QTreeWidgetItem()
-			child.setText(1,assetnameItem)
-			child.setCheckState(1,Qt.Checked)
-			self.root_char.addChild(child)
-		for sets in set_list:
-			assetnameItem = sets['name'] + (str(sets['id']) if sets['id'] else '')
-			child = QTreeWidgetItem()
-			child.setText(1,assetnameItem)
-			child.setCheckState(1,Qt.Checked)
-			self.root_set.addChild(child)
-		for prop in prop_list:
-			assetnameItem = prop['name'] + (str(prop['id']) if prop['id'] else '')
-			child = QTreeWidgetItem()
-			child.setText(1,assetnameItem)
-			child.setCheckState(1,Qt.Checked)
-			self.root_prop.addChild(child)
+		if char_list:			
+			for char in char_list:
+				assetnameItem = char['name'] + (str(char['id']) if char['id'] else '')
+				child = QTreeWidgetItem()
+				child.setText(1,assetnameItem)
+				child.setCheckState(1,Qt.Checked)
+				self.root_char.addChild(child)				
+		# if set_list:
+		# 	for sets in set_list:
+		# 		assetnameItem = sets['name'] + (str(sets['id']) if sets['id'] else '')
+		# 		child = QTreeWidgetItem()
+		# 		child.setText(1,assetnameItem)
+		# 		child.setCheckState(1,Qt.Checked)
+		# 		self.root_set.addChild(child)
+		if prop_list:
+			for prop in prop_list:
+				assetnameItem = prop['name'] + (str(prop['id']) if prop['id'] else '')
+				child = QTreeWidgetItem()
+				child.setText(1,assetnameItem)
+				child.setCheckState(1,Qt.Checked)
+				self.root_prop.addChild(child)
 
 	def autoCheckable(self,item,column):
-		if item and column == 0:
+		if item and column == 0 and item.text(0)!='set':
 			topitemState = item.checkState(0)
 			for i in range(item.childCount()):
 				childItem = item.child(i)
 				childItem.setCheckState(1,topitemState)
+		# if item.parent():
+		# 	if item.parent().text(0) == 'set':
+		# 		itemState = item.checkState(0)
+		# 		for i in range(item.parent().childCount()):
+		# 			broItem = item.parent().child(i)
+		# 			broItem.setCheckState(1,itemState)
 
 	def get_assets(self):
 		print self.proj
@@ -5382,34 +5408,32 @@ class Ui_Form(QtWidgets.QWidget):
 	def buildScene(self):
 		look = 'main'
 		asset_dict = self.get_checked_asset()
+		print asset_dict
 		for asset_name in asset_dict.keys():
 			ref_asset_srf(self.proj,self.shot,str(asset_dict[asset_name]),str(asset_name),look)
 			group_type_asset(asset_dict[asset_name],asset_name)
 			merge_cache(self.proj,self.shot,asset_name,True)
-		ref_cam_cache(self.proj,self.shot)
+		if self.root_set.checkState(0):
+			ref_asset_set(self.proj,self.shot)
+		if not cmds.objExists('%s_cam'%(self.shot)):
+			ref_cam_cache(self.proj,self.shot)
 		set_time_range(self.proj,self.shot)
 		
-
-
 	def get_checked_asset(self):
 		asset_dict = {}
 		for i in range(self.root_char.childCount()):
 			item = self.root_char.child(i)
 			if item.checkState(1):
 				asset_dict[item.text(1)] = 'char'
-		for i in range(self.root_set.childCount()):
-			item = self.root_set.child(i)
-			if item.checkState(1):
-				asset_dict[item.text(1)] = 'set'
+		# for i in range(self.root_set.childCount()):
+		# 	item = self.root_set.child(i)
+		# 	if item.checkState(1):
+		# 		asset_dict[item.text(1)] = 'set'
 		for i in range(self.root_prop.childCount()):
 			item = self.root_prop.child(i)
 			if item.checkState(1):
 				asset_dict[item.text(1)] = 'prop'
 		return asset_dict
-
-
-
-
 
 # def get_shot_assets(proj,seq,shots,shot):
 # 	print proj,seq,shots,shot
@@ -5431,4 +5455,3 @@ def main():
 # import tst
 # reload(tst)
 # tst.main()
-
