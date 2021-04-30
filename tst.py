@@ -5454,53 +5454,90 @@
 # import tst
 # reload(tst)
 # tst.main()
-"Z:\\smxm\\shots\\ep001\\dhd\\dhd067\\cache\\haircache\\c023001lang\\curves\\{c023001lang}_bozi_cangmao.abc"
-${DESC}/guides.abc
+# "Z:\\smxm\\shots\\ep001\\dhd\\dhd067\\cache\\haircache\\c023001lang\\curves\\{c023001lang}_bozi_cangmao.abc"
+# ${DESC}/guides.abc
 
-Z:/smxm/shots/ep001/dhd/dhd067/cache/haircache/c023001lang/curves/\{c023001lang\}_{DESC}.abc
-'Z:/smxm/shots/ep001/dhd/dhd067/cache/haircache/c023001lang/curves/\{c023001lang\}_${DESC}.abc'
-${DESC}/guides.abc
-import xgenm.xgGlobal as xgg
-import xgenm as xg
-xg.palettes()
-xg.descriptions('')
-xg.palette('c023001lang1:bozi_chang')
-xg.getActive('c023001lang1:Lang_HairCol','c023001lang1:dupi_changmao','Primitive')
-xg.objects('c023001lang1:Lang_HairCol','c023001lang1:dupi_changmao',False)
+# Z:/smxm/shots/ep001/dhd/dhd067/cache/haircache/c023001lang/curves/\{c023001lang\}_{DESC}.abc
+# 'Z:/smxm/shots/ep001/dhd/dhd067/cache/haircache/c023001lang/curves/\{c023001lang\}_${DESC}.abc'
+# ${DESC}/guides.abc
+# import xgenm.xgGlobal as xgg
+# import xgenm as xg
+# xg.palettes()
+# xg.descriptions('')
+# xg.palette('c023001lang1:bozi_chang')
+# xg.getActive('c023001lang1:Lang_HairCol','c023001lang1:dupi_changmao','Primitive')
+# xg.objects('c023001lang1:Lang_HairCol','c023001lang1:dupi_changmao',False)
 
-xg.getActive('c023001lang1:Lang_HairCol','c023001lang1:bozi_chang','Preview/Output')
-xg.setActive('c023001lang1:Lang_HairCol','c023001lang1:tou_duanmao', 'GLRenderer',True)
-xg.setActive('c023001lang1:Lang_HairCol','c023001lang1:tou_duanmao', 'RandomGenerator',False)
-xg.attrs('c023001lang1:Lang_HairCol','c023001lang1:tou_duanmao','NullRenderer' )
-xg.attrs('c023001lang1:Lang_HairCol','c023001lang1:tou_duanmao','RendermanRenderer' )
-xg.attrs('c023001lang1:Lang_HairCol','c023001lang1:tou_duanmao','RandomGenerator' )
-xg.attrs('c023001lang1:Lang_HairCol','c023001lang1:tou_duanmao','GLRenderer' )
-xg.allAttrs('c023001lang1:Lang_HairCol','c023001lang1:tou_duanmao','RandomGenerator' )
+# xg.getActive('c023001lang1:Lang_HairCol','c023001lang1:bozi_chang','Preview/Output')
+# xg.setActive('c023001lang1:Lang_HairCol','c023001lang1:tou_duanmao', 'GLRenderer',True)
+# xg.setActive('c023001lang1:Lang_HairCol','c023001lang1:tou_duanmao', 'RandomGenerator',False)
+# xg.attrs('c023001lang1:Lang_HairCol','c023001lang1:tou_duanmao','NullRenderer' )
+# xg.attrs('c023001lang1:Lang_HairCol','c023001lang1:tou_duanmao','RendermanRenderer' )
+# xg.attrs('c023001lang1:Lang_HairCol','c023001lang1:tou_duanmao','RandomGenerator' )
+# xg.attrs('c023001lang1:Lang_HairCol','c023001lang1:tou_duanmao','GLRenderer' )
+# xg.allAttrs('c023001lang1:Lang_HairCol','c023001lang1:tou_duanmao','RandomGenerator' )
 
-16:03:55 (1) GLRenderer made active previewer.
-16:03:55 (1) Initialize c023001lang1:bozi_chang description 
-16:04:10 (1) RandomGenerator made active.
+# 16:03:55 (1) GLRenderer made active previewer.
+# 16:03:55 (1) Initialize c023001lang1:bozi_chang description 
+# 16:04:10 (1) RandomGenerator made active.
 
-import xgenm as xg
-import xgenm.xgGlobal as xgg
-import xgenm.XgExternalAPI as xge
-print xg.palettes()
-descriptions =  xg.descriptions('c023001lang:Lang_HairCol')
-for description in descriptions:
-    print "Description:" + description
-    objects = xg.objects('c023001lang:Lang_HairCol',description,True)
-    for object in objects:
-        print "Object:" + object
-        attrs = xg.allAttrs('c023001lang:Lang_HairCol',description,object)
-        for attr in attrs:
-            print 'Attribute:' + attr + ", Value:" + xg.getAttr(attr,'c023001lang:Lang_HairCol',description,object)
-import os
-for description in descriptions:
-    des = description.split(":")[-1]
-    filePath = "Z:\smxm\shots\ep001\dhd\dhd067\cache\haircache\c023001lang\curves\{c023001lang}_%s.abc"%(description.split(":")[-1])
-    print os.path.isfile(filePath)
-    xgen.setAttr('cacheFileName',filePath,'c023001lang:Lang_HairCol',description,'SplinePrimitive')
-    xgen.setAttr('liveMode','True','c023001lang:Lang_HairCol',description,'SplinePrimitive')
+# import xgenm as xg
+# import xgenm.xgGlobal as xgg
+# import xgenm.XgExternalAPI as xge
+# print xg.palettes()
+# descriptions =  xg.descriptions('c023001lang:Lang_HairCol')
+# for description in descriptions:
+#     print "Description:" + description
+#     objects = xg.objects('c023001lang:Lang_HairCol',description,True)
+#     for object in objects:
+#         print "Object:" + object
+#         attrs = xg.allAttrs('c023001lang:Lang_HairCol',description,object)
+#         for attr in attrs:
+#             print 'Attribute:' + attr + ", Value:" + xg.getAttr(attr,'c023001lang:Lang_HairCol',description,object)
+# import os
+# for description in descriptions:
+#     des = description.split(":")[-1]
+#     filePath = "Z:\smxm\shots\ep001\dhd\dhd067\cache\haircache\c023001lang\curves\{c023001lang}_%s.abc"%(description.split(":")[-1])
+#     print os.path.isfile(filePath)
+#     xgen.setAttr('cacheFileName',filePath,'c023001lang:Lang_HairCol',description,'SplinePrimitive')
+#     xgen.setAttr('liveMode','True','c023001lang:Lang_HairCol',description,'SplinePrimitive')
+# import xgenm.xgGlobal as xgg
+# de = xgg.DescriptionEditor
+# de.refresh("Full")
+# -------------------------------------------------------------------------------------
+import xgenm as xgen
 import xgenm.xgGlobal as xgg
 de = xgg.DescriptionEditor
+palettesList = xg.palettes()
+for palette in palettesList:
+	descriptions =  xgen.descriptions(palette)
+	for description in descriptions:
+	    des = description.split(":")[-1]
+	    filePath = "Z:\smxm\shots\ep001\dhd\dhd067\cache\haircache\c023001lang1\curves\{c023001lang1}_%s.abc"%(description.split(":")[-1])
+	    if os.path.isfile(filePath):
+		    xgen.setAttr('cacheFileName',filePath,palette,description,'SplinePrimitive')
+		    xgen.setAttr('liveMode','False',palette,description,'SplinePrimitive')
+	for description in descriptions:
+		cmds.xgmPreview(description)
+		de.previewer.execute()
+
 de.refresh("Full")
+# -------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------
+import maya.cmds as cmds
+
+cmds.setAttr("defaultArnoldRenderOptions.autotx",False)
+cmds.setAttr("defaultArnoldRenderOptions.use_existing_tiled_textures",False)
+aiString = cmds.createNode('aiStringReplace')
+cmds.setAttr(aiString+".enable",True )
+cmds.setAttr(aiString+'.selection',"*.(@node=='image')",type = 'string')
+cmds.setAttr(aiString+".os",0)
+cmds.setAttr(aiString+".match","\\.(png|exr|hdr)",type = 'string')
+cmds.setAttr(aiString+".replace",".tx",type = 'string')
+# -------------------------------------------------------------------------------------
+# import sys
+# sys.path.append(r"D:\zhaojiayi\Documents\coco\cocoPipeline\dcc\maya\scripts\python\pipelineTool\lgt")
+# import lgtshotmay
+# reload(lgtshotmay)
+# lgtshotmay.main()
