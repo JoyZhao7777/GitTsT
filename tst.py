@@ -5164,7 +5164,7 @@
 # import os
 # import maya.OpenMayaUI as omui
 # # import shiboken2 as shiboken
-# # from Qt import QtWidgets, QtCore,QtGui
+from Qt import QtWidgets, QtCore,QtGui
 # from PySide2 import QtWidgets, QtCore 
 # try:
 #     from PySide2.QtWidgets import *
@@ -5505,39 +5505,97 @@
 # de = xgg.DescriptionEditor
 # de.refresh("Full")
 # -------------------------------------------------------------------------------------
-import xgenm as xgen
-import xgenm.xgGlobal as xgg
-de = xgg.DescriptionEditor
-palettesList = xg.palettes()
-for palette in palettesList:
-	descriptions =  xgen.descriptions(palette)
-	for description in descriptions:
-	    des = description.split(":")[-1]
-	    filePath = "Z:\smxm\shots\ep001\dhd\dhd067\cache\haircache\c023001lang1\curves\{c023001lang1}_%s.abc"%(description.split(":")[-1])
-	    if os.path.isfile(filePath):
-		    xgen.setAttr('cacheFileName',filePath,palette,description,'SplinePrimitive')
-		    xgen.setAttr('liveMode','False',palette,description,'SplinePrimitive')
-	for description in descriptions:
-		cmds.xgmPreview(description)
-		de.previewer.execute()
+# import xgenm as xgen
+# import xgenm.xgGlobal as xgg
+# de = xgg.DescriptionEditor
+# palettesList = xg.palettes()
+# for palette in palettesList:
+# 	descriptions =  xgen.descriptions(palette)
+# 	for description in descriptions:
+# 	    des = description.split(":")[-1]
+# 	    filePath = "Z:\smxm\shots\ep001\dhd\dhd067\cache\haircache\c023001lang1\curves\{c023001lang1}_%s.abc"%(description.split(":")[-1])
+# 	    if os.path.isfile(filePath):
+# 		    xgen.setAttr('cacheFileName',filePath,palette,description,'SplinePrimitive')
+# 		    xgen.setAttr('liveMode','False',palette,description,'SplinePrimitive')
+# 	for description in descriptions:
+# 		cmds.xgmPreview(description)
+# 		de.previewer.execute()
 
-de.refresh("Full")
+# de.refresh("Full")
 # -------------------------------------------------------------------------------------
 
 # -------------------------------------------------------------------------------------
-import maya.cmds as cmds
+# import maya.cmds as cmds
 
-cmds.setAttr("defaultArnoldRenderOptions.autotx",False)
-cmds.setAttr("defaultArnoldRenderOptions.use_existing_tiled_textures",False)
-aiString = cmds.createNode('aiStringReplace')
-cmds.setAttr(aiString+".enable",True )
-cmds.setAttr(aiString+'.selection',"*.(@node=='image')",type = 'string')
-cmds.setAttr(aiString+".os",0)
-cmds.setAttr(aiString+".match","\\.(png|exr|hdr)",type = 'string')
-cmds.setAttr(aiString+".replace",".tx",type = 'string')
+# cmds.setAttr("defaultArnoldRenderOptions.autotx",False)
+# cmds.setAttr("defaultArnoldRenderOptions.use_existing_tiled_textures",False)
+# aiString = cmds.createNode('aiStringReplace')
+# cmds.setAttr(aiString+".enable",True )
+# cmds.setAttr(aiString+'.selection',"*.(@node=='image')",type = 'string')
+# cmds.setAttr(aiString+".os",0)
+# cmds.setAttr(aiString+".match","\\.(png|exr|hdr)",type = 'string')
+# cmds.setAttr(aiString+".replace",".tx",type = 'string')
 # -------------------------------------------------------------------------------------
 # import sys
 # sys.path.append(r"D:\zhaojiayi\Documents\coco\cocoPipeline\dcc\maya\scripts\python\pipelineTool\lgt")
 # import lgtshotmay
 # reload(lgtshotmay)
 # lgtshotmay.main()
+# import os
+
+# rvPath = r'"C:/Program Files/Shotgun/RV-7.2.0/bin/rv.exe"'
+# filePath = r"Z:\\smxm\\shots\\ep001\\dhd\\dhd067\\animation\\lay\\ok\\dhd067_lay_ok.mov"
+# cmd = rvPath + ' ' + filePath
+# print cmd
+# os.system(cmd)
+
+# "Z:\\smxm\\shots\\ep001\\xuz\\xuz003\animation\\lay\\ok\\xuz003_lay_ok.mov"
+# "Z:\\smxm\\shots\\ep001\\dhd\\dhd067\\set\\scene\\ok\\dhd067_scene_ok.mov"
+# signal = 'lay'
+# signal = 'set'
+# projPath = 'Z:\\smxm\\shots\\ep001'
+# shotsList = os.listdir(projPath)
+# filepathList = []
+# for shots in shotsList:
+# 	shotsPath = os.path.join(projPath,shots)
+# 	shotList = os.listdir(shotsPath)
+# 	for shot in shotList:
+# 		if signal == 'lay':
+# 			shotPath = os.path.join(shotsPath,shot,'animation\\lay\\ok')
+# 			if os.path.isdir(shotPath):
+# 				filePath = shotPath + '\\' + shot + '_lay_ok.mov'
+# 				if os.path.isfile(filePath):
+# 					filepathList.append(filePath)
+# 		elif signal == 'set':
+# 			shotPath = os.path.join(shotsPath,shot,'set\\scene\\ok')
+# 			if os.path.isdir(shotPath):
+# 				filePath = shotPath + '\\' + shot + '_scene_ok.mov'
+# 				if os.path.isfile(filePath):
+# 					filepathList.append(filePath)
+# cmdPath = ' '.join(filepathList)
+# cmd = rvPath + ' ' + cmdPath
+# os.system(cmd)
+
+# def get_shot_info(proj,shot):
+# 	xlsx_path = "Z:\\%s\\database\\casting\\main.xlsx"%proj
+# 	shotinfo = Function.getShot(xlsx_path, shot)
+# 	return shotinfo
+
+# proj = 'smxm'
+# shot = 'dhd066'
+# print '------------'
+# print get_shot_info(proj,shot)
+import os
+# import ftrack
+# print ftrack.getProjects()
+
+# new session 
+# ERROR: com.ftrack.recipes.customise_structure.location.custom_location_plugin:Disk prefix location variable does not exist. 
+# INFO: ftrack_api._centralized_storage_scenario.ActivateCentralizedStorageScenario:Storage scenario activated. Configured from {u'data': {u'location_id': u'f10b5013-50e2-4cfb-b659-16c86f27375b', u'location_name': u'studio.central-storage-location', u'accessor': {u'mount_points': {u'windows': u'z:', u'osx': u'', u'linux': u''}}}, u'scenario': u'ftrack.centralized-storage'} 
+# INFO: received URL 'rvlink://baked/202d666c616773204d6f64654d616e616765725072656c6f61643d66747261636b2066747261636b55726c3d687474703a2f2f666b2e6363632e6e657420706172616d733d277b22656e746974794964223a5b2264386533396434382d616663302d313165622d383937342d303031353564303162663037225d2c22617574685f746f6b656e223a5b2264386539646139362d616663302d313165622d613837312d303031353564303162663037225d2c22656e7469747954797065223a5b2274656d7064617461225d7d27' 
+# INFO: decoded URL 'rvlink:// -flags ModeManagerPreload=ftrack ftrackUrl=http://fk.ccc.net params='{"entityId":["d8e39d48-afc0-11eb-8974-00155d01bf07"],"auth_token":["d8e9da96-afc0-11eb-a871-00155d01bf07"],"entityType":["tempdata"]}'' 
+# INFO: received URL 'rvlink://baked/202d666c616773204d6f64654d616e616765725072656c6f61643d66747261636b2066747261636b55726c3d687474703a2f2f666b2e6363632e6e657420706172616d733d277b22656e746974794964223a5b2264386533396434382d616663302d313165622d383937342d303031353564303162663037225d2c22617574685f746f6b656e223a5b2264386539646139362d616663302d313165622d613837312d303031353564303162663037225d2c22656e7469747954797065223a5b2274656d7064617461225d7d27' 
+# INFO: decoded URL 'rvlink:// -flags ModeManagerPreload=ftrack ftrackUrl=http://fk.ccc.net params='{"entityId":["d8e39d48-afc0-11eb-8974-00155d01bf07"],"auth_token":["d8e9da96-afc0-11eb-a871-00155d01bf07"],"entityType":["tempdata"]}'' 
+# INFO: eval returned: 
+# INFO: eval returned: 
+import ftrack_api
