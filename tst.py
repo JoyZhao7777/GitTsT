@@ -5585,7 +5585,7 @@ from Qt import QtWidgets, QtCore,QtGui
 # shot = 'dhd066'
 # print '------------'
 # print get_shot_info(proj,shot)
-import os
+# import os
 # import ftrack
 # print ftrack.getProjects()
 
@@ -5598,4 +5598,22 @@ import os
 # INFO: decoded URL 'rvlink:// -flags ModeManagerPreload=ftrack ftrackUrl=http://fk.ccc.net params='{"entityId":["d8e39d48-afc0-11eb-8974-00155d01bf07"],"auth_token":["d8e9da96-afc0-11eb-a871-00155d01bf07"],"entityType":["tempdata"]}'' 
 # INFO: eval returned: 
 # INFO: eval returned: 
-import ftrack_api
+# import ftrack_api
+
+# -------------------------------density shrink---------------------------------------------------
+# import xgenm as xg
+# import xgenm.xgGlobal as xgg
+# import xgenm.XgExternalAPI as xge
+# palettes = xg.palettes()
+# for palette in palettes:
+#     descriptions = xg.descriptions(palette)
+#     for description in descriptions:
+#         objects = xg.objects(palette, description, True)
+#         for object in objects:
+#             attrs = xg.allAttrs(palette, description, object)
+#             for attr in attrs:
+#                 if "ensity" in attr:
+#                     _value = xg.getAttr(attr, palette, description, object)
+#                     print(_value,float(_value)/2)
+#                     xg.setAttr(attr,str(float(_value)/2),palette, description, object
+# -------------------------------------------------------------------------------------------------
