@@ -5,17 +5,17 @@
 # import logging
 # class Student(object):
 
-# 	@property
-# 	def score(self):
-# 		return self._score
+#   @property
+#   def score(self):
+#       return self._score
 
-# 	@score.setter
-# 	def score(self,value):
-# 		if not isinstance(value,int):
-# 			raise ValueError('score must be an integer!')
-# 		if value<0 or value>100:
-# 			raise ValueError('score must be 0~100!')
-# 		self._score =value
+#   @score.setter
+#   def score(self,value):
+#       if not isinstance(value,int):
+#           raise ValueError('score must be an integer!')
+#       if value<0 or value>100:
+#           raise ValueError('score must be 0~100!')
+#       self._score =value
 
 # s=Student()
 # s.score=60
@@ -4921,185 +4921,185 @@
 
 
 # def get_shotinfo(project,shot,sets=False):
-# 	shotinfo_list = castingLib.casting_from_excl(project,shot,sets)
-# 	return shotinfo_list
+#   shotinfo_list = castingLib.casting_from_excl(project,shot,sets)
+#   return shotinfo_list
 
 # def get_shot_asset_srf(proj,shot,sets=False):
-# 	shotinfo_list = get_shotinfo(project,shot)
-# 	srfpath_list = []
-# 	for shotinfo in shotinfo_list:
-# 		srfpath = "Z:\\%s\\assets\\char\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(proj,shotinfo.asset_id,shotinfo.var['look'],shotinfo.asset_id,shotinfo.var['look'])
-# 		if os.path.isfile(srfpath):
-# 			srfpath_list.append(srfpath)
-# 	return srfpath_list
+#   shotinfo_list = get_shotinfo(project,shot)
+#   srfpath_list = []
+#   for shotinfo in shotinfo_list:
+#       srfpath = "Z:\\%s\\assets\\char\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(proj,shotinfo.asset_id,shotinfo.var['look'],shotinfo.asset_id,shotinfo.var['look'])
+#       if os.path.isfile(srfpath):
+#           srfpath_list.append(srfpath)
+#   return srfpath_list
 
 # def get_shot_ani(proj,shot):
-# 	shotinfo_list = get_shotinfo(proj,shot)
-# 	anipath_list = []
-# 	for shotinfo in shotinfo_list:
-# 		anipath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\geocache\\%s\\%s_geocache_%s.abc"%(proj,shot[0:3],shot,shotinfo.asset_name,shot,shotinfo.asset_name)
-# 		if os.path.isfile(anipath):
-# 			anipath_list.append(anipath)
-# 	return anipath_list
+#   shotinfo_list = get_shotinfo(proj,shot)
+#   anipath_list = []
+#   for shotinfo in shotinfo_list:
+#       anipath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\geocache\\%s\\%s_geocache_%s.abc"%(proj,shot[0:3],shot,shotinfo.asset_name,shot,shotinfo.asset_name)
+#       if os.path.isfile(anipath):
+#           anipath_list.append(anipath)
+#   return anipath_list
 
 # def get_cam_abc(proj,shot):
-# 	campath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\camcache\\cam\\%s_camcache_cam.abc"%(proj,shot[0:3],shot,shot)
-# 	if os.path.isfile(campath):
-# 		return campath
-# 	else:
-# 		print 'No such file'
-# 		return None,None
+#   campath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\camcache\\cam\\%s_camcache_cam.abc"%(proj,shot[0:3],shot,shot)
+#   if os.path.isfile(campath):
+#       return campath
+#   else:
+#       print 'No such file'
+#       return None,None
 
 # def get_shot_sets(proj,shot):
-# 	shotinfo_list = get_shotinfo(project,shot,sets=True)
-# 	sets_list = []
-# 	for shotinfo in shotinfo_list:
-# 		asset_id = shotinfo.asset_id
-# 		if asset_id[0] == 's':
-# 			sets_list.append(shotinfo)
-# 	return sets_list
+#   shotinfo_list = get_shotinfo(project,shot,sets=True)
+#   sets_list = []
+#   for shotinfo in shotinfo_list:
+#       asset_id = shotinfo.asset_id
+#       if asset_id[0] == 's':
+#           sets_list.append(shotinfo)
+#   return sets_list
 
 # def get_shot_time(proj,shot):
-# 	xlsx_path = "Z:\\%s\\database\\casting\\main.xlsx"%proj
-# 	shotinfo = Function.getShot(xlsx_path, shot)
-# 	timeRange = shotinfo['frameRange']
-# 	return timeRange
+#   xlsx_path = "Z:\\%s\\database\\casting\\main.xlsx"%proj
+#   shotinfo = Function.getShot(xlsx_path, shot)
+#   timeRange = shotinfo['frameRange']
+#   return timeRange
 
 # def auto_copy_uv(asset_name):
-# 	d_uvset = 'map1'
-# 	mesh_list =  cmds.listRelatives('%s:Root_grp'%asset_name,ad= True,type= ['geometryShape'])
-# 	cmds.listRelatives(['%s:Root_grp'%asset_name],c=True,type= 'geometryShape')
-# 	for mesh in mesh_list:
-# 		if not cmds.polyEvaluate(mesh,uvcoord = True):
-# 			print "%s has No Uvs"%mesh
-# 		else:
-# 			cmds.select(mesh)
-# 			uvsets_list = cmds.polyUVSet( query=True, currentUVSet=True)
-# 			if uvsets_list:
-# 				if d_uvset not in uvsets_list:
-# 					cmds.polyCopyUV(mesh,uvSetNameInput = uvsets_list[0],uvSetName= d_uvset)
+#   d_uvset = 'map1'
+#   mesh_list =  cmds.listRelatives('%s:Root_grp'%asset_name,ad= True,type= ['geometryShape'])
+#   cmds.listRelatives(['%s:Root_grp'%asset_name],c=True,type= 'geometryShape')
+#   for mesh in mesh_list:
+#       if not cmds.polyEvaluate(mesh,uvcoord = True):
+#           print "%s has No Uvs"%mesh
+#       else:
+#           cmds.select(mesh)
+#           uvsets_list = cmds.polyUVSet( query=True, currentUVSet=True)
+#           if uvsets_list:
+#               if d_uvset not in uvsets_list:
+#                   cmds.polyCopyUV(mesh,uvSetNameInput = uvsets_list[0],uvSetName= d_uvset)
 
 # def check_errorUv_asset():
-# 	char_path = 'Z:\\smxm\\assets\\char'
-# 	asset_list = os.listdir(char_path)
-# 	print asset_list
-# 	srfpathList = []
-# 	for asset in asset_list:
-# 		srf_path = 'Z:\\smxm\\assets\\char\\%s\\surface\\look\\main\\ok\\%s_look_main.ma'%(asset,asset)
-# 		if os.path.isfile(srf_path):
-# 			srfpathList.append(srf_path)
-# 			cmds.file(srf_path,r = True,type = 'mayaAscii',namespace = asset)
-# 			print '--------------------------------------------'
-# 			auto_copy_uv(asset)
-# 			print '----------------------------------------------'
+#   char_path = 'Z:\\smxm\\assets\\char'
+#   asset_list = os.listdir(char_path)
+#   print asset_list
+#   srfpathList = []
+#   for asset in asset_list:
+#       srf_path = 'Z:\\smxm\\assets\\char\\%s\\surface\\look\\main\\ok\\%s_look_main.ma'%(asset,asset)
+#       if os.path.isfile(srf_path):
+#           srfpathList.append(srf_path)
+#           cmds.file(srf_path,r = True,type = 'mayaAscii',namespace = asset)
+#           print '--------------------------------------------'
+#           auto_copy_uv(asset)
+#           print '----------------------------------------------'
 
 
 
 
 
 # def get_proj_fps(proj):
-# 	session = ftrackSession.createSession()
-# 	projects = session.query('Project where name is "{0}"'.format(proj)).first()
-# 	GetFps = projects['custom_attributes']['fps']
-# 	time_dict = {
-# 	15:"gama",
-# 	24:"film",
-# 	25:"pal",
-# 	30:"ntsc",
-# 	48:"show",
-# 	50:"half",
-# 	60:"ntscf"
-# 	}
-# 	time_str = time_dict[GetFps]
-# 	return time_str
+#   session = ftrackSession.createSession()
+#   projects = session.query('Project where name is "{0}"'.format(proj)).first()
+#   GetFps = projects['custom_attributes']['fps']
+#   time_dict = {
+#   15:"gama",
+#   24:"film",
+#   25:"pal",
+#   30:"ntsc",
+#   48:"show",
+#   50:"half",
+#   60:"ntscf"
+#   }
+#   time_str = time_dict[GetFps]
+#   return time_str
 
 # def get_shot_info(proj,shot):
-# 	xlsx_path = "Z:\\%s\\database\\casting\\main.xlsx"%proj
-# 	print xlsx_path
-# 	# xlsx_path = "C:\\Users\\zhaojiayi\\Desktop\\tstfile\\main.xlsx"
-# 	shotinfo = Function.getShot(xlsx_path, shot)
-# 	return shotinfo
+#   xlsx_path = "Z:\\%s\\database\\casting\\main.xlsx"%proj
+#   print xlsx_path
+#   # xlsx_path = "C:\\Users\\zhaojiayi\\Desktop\\tstfile\\main.xlsx"
+#   shotinfo = Function.getShot(xlsx_path, shot)
+#   return shotinfo
 
 # def get_shot_assets(type,shotinfo):
-# 	info_list = shotinfo[type]
-# 	typeAssetlist = []
-# 	for info in info_list:
-# 		assetName = info['name'] + (str(info['id']) if info['id'] else '')
-# 		typeAssetlist.append(assetName)
-# 	return typeAssetlist
+#   info_list = shotinfo[type]
+#   typeAssetlist = []
+#   for info in info_list:
+#       assetName = info['name'] + (str(info['id']) if info['id'] else '')
+#       typeAssetlist.append(assetName)
+#   return typeAssetlist
 
 # def get_asset_outline(proj,shot):
-# 	shotinfo = get_shot_info(proj,shot)
-# 	prp_list = get_shot_assets('prop',shotinfo)
-# 	char_list = get_shot_assets('char',shotinfo)
-# 	set_list = get_shot_assets('set',shotinfo)
-# 	for prp in prp_list:
-# 		print 'root/prp/%s'%prp
-# 	for char in char_list:
-# 		print 'root/char/%s'%char
-# 	for sets in set_list:
-# 		print 'root/set/%s'%char
+#   shotinfo = get_shot_info(proj,shot)
+#   prp_list = get_shot_assets('prop',shotinfo)
+#   char_list = get_shot_assets('char',shotinfo)
+#   set_list = get_shot_assets('set',shotinfo)
+#   for prp in prp_list:
+#       print 'root/prp/%s'%prp
+#   for char in char_list:
+#       print 'root/char/%s'%char
+#   for sets in set_list:
+#       print 'root/set/%s'%char
 
 # def ref_asset_srf(proj,shot,assetType,asset_name,look):
-# 	# if assetType == 'set':
-# 	# 	setPath = 'Z:\\%s\\shots\\ep001\\%s\\%s\\set\\scene\\ok\\%s_scene_ok.ma'%(proj,shot[0:3],shot,shot)
-# 	# 	if os.path.isfile(setPath):
-# 	# 		cmds.file(setPath,r = True,type = 'mayaAscii',gr =True,gn = 'set')
-# 	# 		# file -r -type "mayaAscii" -gr  -ignoreVersion -gn "tsts" -loadReferenceDepth "all" -mergeNamespacesOnClash false -namespace "dhd067_scene_ok" 
-# 	# 		print '---------------------------------'
-# 	# 		print setPath
-# 	# 		# parent_group = '%s_%s'%(asset_name,assetType)
-# 	# 		# cmds.group( em=True, name=parent_group )
-# 	# 		# cmds.parent('%s:Root_grp'%asset_name,parent_group)
-# 	if assetType != 'set':
-# 		assetName = asset_name.rstrip(string.digits)
-# 		srfpath = "Z:\\%s\\assets\\%s\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(proj,assetType,assetName,look,assetName,look)
-# 		if os.path.isfile(srfpath):
-# 			cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = asset_name)
-# 			parent_group = '%s_%s'%(asset_name,assetType) 
-# 			cmds.group( em=True, name=parent_group )
-# 			cmds.parent('%s:Root_grp'%asset_name,parent_group)
+#   # if assetType == 'set':
+#   #   setPath = 'Z:\\%s\\shots\\ep001\\%s\\%s\\set\\scene\\ok\\%s_scene_ok.ma'%(proj,shot[0:3],shot,shot)
+#   #   if os.path.isfile(setPath):
+#   #       cmds.file(setPath,r = True,type = 'mayaAscii',gr =True,gn = 'set')
+#   #       # file -r -type "mayaAscii" -gr  -ignoreVersion -gn "tsts" -loadReferenceDepth "all" -mergeNamespacesOnClash false -namespace "dhd067_scene_ok" 
+#   #       print '---------------------------------'
+#   #       print setPath
+#   #       # parent_group = '%s_%s'%(asset_name,assetType)
+#   #       # cmds.group( em=True, name=parent_group )
+#   #       # cmds.parent('%s:Root_grp'%asset_name,parent_group)
+#   if assetType != 'set':
+#       assetName = asset_name.rstrip(string.digits)
+#       srfpath = "Z:\\%s\\assets\\%s\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(proj,assetType,assetName,look,assetName,look)
+#       if os.path.isfile(srfpath):
+#           cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = asset_name)
+#           parent_group = '%s_%s'%(asset_name,assetType) 
+#           cmds.group( em=True, name=parent_group )
+#           cmds.parent('%s:Root_grp'%asset_name,parent_group)
 
 # def ref_asset_set(proj,shot):
-# 	setPath = 'Z:\\%s\\shots\\ep001\\%s\\%s\\set\\scene\\ok\\%s_scene_ok.ma'%(proj,shot[0:3],shot,shot)
-# 	if os.path.isfile(setPath):
-# 		cmds.file(setPath,r = True,type = 'mayaAscii',gr =True,gn = 'set')
-# 		if not cmds.objExists('|root'):
-# 			cmds.group(em=True,name = 'root')
-# 		cmds.parent('set','root')
+#   setPath = 'Z:\\%s\\shots\\ep001\\%s\\%s\\set\\scene\\ok\\%s_scene_ok.ma'%(proj,shot[0:3],shot,shot)
+#   if os.path.isfile(setPath):
+#       cmds.file(setPath,r = True,type = 'mayaAscii',gr =True,gn = 'set')
+#       if not cmds.objExists('|root'):
+#           cmds.group(em=True,name = 'root')
+#       cmds.parent('set','root')
 
 # def group_type_asset(assetType,assetName):
-# 	if assetType != 'set':
-# 		if cmds.objExists('%s_%s'%(assetName,assetType)):
-# 			if not cmds.objExists('|root'):
-# 				cmds.group(em=True,name = 'root')
-# 			if not cmds.objExists('|root|%s'%assetType):
-# 				cmds.group(em=True,name = assetType)
-# 				cmds.parent(assetType,'root')
-# 			cmds.parent('%s_%s'%(assetName,assetType),assetType)
+#   if assetType != 'set':
+#       if cmds.objExists('%s_%s'%(assetName,assetType)):
+#           if not cmds.objExists('|root'):
+#               cmds.group(em=True,name = 'root')
+#           if not cmds.objExists('|root|%s'%assetType):
+#               cmds.group(em=True,name = assetType)
+#               cmds.parent(assetType,'root')
+#           cmds.parent('%s_%s'%(assetName,assetType),assetType)
 
 # def merge_cache(proj,shot,assetName,hair=False):
-# 	anipath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\geocache\\%s\\%s_geocache_%s.abc"%(proj,shot[0:3],shot,assetName,shot,assetName)
-# 	cmds.AbcImport(anipath, mode= True, connect ='%s:Root_grp' %(assetName))
-# 	if hair:
-# 		hairPath = 'Z:/%s/shots/ep001/%s/%s/cache/haircache/%s/geom/{%s}_geom.abc'%(proj,shot[0:3],shot,assetName,assetName)
-# 		if os.path.isfile(hairPath):
-# 			cmds.AbcImport(hairPath, mode= True, connect ='%s:Root_grp' %(assetName))
+#   anipath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\geocache\\%s\\%s_geocache_%s.abc"%(proj,shot[0:3],shot,assetName,shot,assetName)
+#   cmds.AbcImport(anipath, mode= True, connect ='%s:Root_grp' %(assetName))
+#   if hair:
+#       hairPath = 'Z:/%s/shots/ep001/%s/%s/cache/haircache/%s/geom/{%s}_geom.abc'%(proj,shot[0:3],shot,assetName,assetName)
+#       if os.path.isfile(hairPath):
+#           cmds.AbcImport(hairPath, mode= True, connect ='%s:Root_grp' %(assetName))
 
 # def ref_cam_cache(proj,shot):
-# 	cam_path = get_cam_abc(proj,shot)
-# 	if cam_path:
-# 		namespace_cam = '%s_cam'%shot
-# 		cmds.file(cam_path,type = "Alembic",r= True,namespace = namespace_cam)
-# 	else:
-# 		print "No such camera File"
+#   cam_path = get_cam_abc(proj,shot)
+#   if cam_path:
+#       namespace_cam = '%s_cam'%shot
+#       cmds.file(cam_path,type = "Alembic",r= True,namespace = namespace_cam)
+#   else:
+#       print "No such camera File"
 
 # def set_time_range(proj,shot):
-# 	fps = get_proj_fps(proj)
-# 	timeRange = get_shot_time(proj,shot)
-# 	cmds.currentUnit(time=fps)
-# 	cmds.playbackOptions(minTime=int(timeRange[0])-2)
-# 	cmds.playbackOptions(maxTime=int(timeRange[1])+2)
+#   fps = get_proj_fps(proj)
+#   timeRange = get_shot_time(proj,shot)
+#   cmds.currentUnit(time=fps)
+#   cmds.playbackOptions(minTime=int(timeRange[0])-2)
+#   cmds.playbackOptions(maxTime=int(timeRange[1])+2)
 
 # # dhd067
 # # if __name__ == "__main__":
@@ -5108,9 +5108,9 @@
 # #     ex = MainSystem()
 # #     ex.hide()
 # #     sys.exit(app.exec_())
-# 	# proj = 'smxm'
-# 	# shot = 'xuz003'
-# 	# shotinfo = get_shot_info(proj,shot)
+#   # proj = 'smxm'
+#   # shot = 'xuz003'
+#   # shotinfo = get_shot_info(proj,shot)
 
 
 # # 'Z:/smxm/shots/ep001/xuz/xuz003/cache/haircache/c001001xiongmaox/geom/'
@@ -5118,19 +5118,19 @@
 # # count = 1 
 # # shotinfo_list = get_shotinfo(proj,shot)
 # # for shotinfo in shotinfo_list:
-# # 	count -= 1
-# # 	srfpath = "Z:\\%s\\assets\\char\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(proj,shotinfo.asset_id,shotinfo.var['look'],shotinfo.asset_id,shotinfo.var['look'])
-# # 	anipath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\geocache\\%s\\%s_geocache_%s.abc"%(proj,shot[0:3],shot,shotinfo.asset_name,shot,shotinfo.asset_name)
-# # 	if os.path.isfile(srfpath) and os.path.isfile(anipath):
-# # 		cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = shotinfo.asset_name)
-# # 		cmds.reorder( '%s:Root_grp'%shotinfo.asset_name, r=count )
-# # 		cmds.AbcImport(anipath, mode= True, connect ='%s:Root_grp' %(shotinfo.asset_name))
-# # 		auto_copy_uv(shotinfo.asset_name)
+# #     count -= 1
+# #     srfpath = "Z:\\%s\\assets\\char\\%s\\surface\\look\\%s\\ok\\%s_look_%s.ma"%(proj,shotinfo.asset_id,shotinfo.var['look'],shotinfo.asset_id,shotinfo.var['look'])
+# #     anipath = "Z:\\%s\\shots\\ep001\\%s\\%s\\cache\\geocache\\%s\\%s_geocache_%s.abc"%(proj,shot[0:3],shot,shotinfo.asset_name,shot,shotinfo.asset_name)
+# #     if os.path.isfile(srfpath) and os.path.isfile(anipath):
+# #         cmds.file(srfpath,r = True,type = 'mayaAscii',namespace = shotinfo.asset_name)
+# #         cmds.reorder( '%s:Root_grp'%shotinfo.asset_name, r=count )
+# #         cmds.AbcImport(anipath, mode= True, connect ='%s:Root_grp' %(shotinfo.asset_name))
+# #         auto_copy_uv(shotinfo.asset_name)
 # # cam_path = get_cam_abc(proj,shot)
 # # if cam_path:
-# # 	cmds.file(cam_path,type = "Alembic",r= True)
+# #     cmds.file(cam_path,type = "Alembic",r= True)
 # # else:
-# # 	print "No such camera File"
+# #     print "No such camera File"
 # # fps = get_proj_fps(proj)
 # # cmds.currentUnit(time=fps)
 # # cmds.playbackOptions(minTime=int(timeRange[0])-2)
@@ -5154,9 +5154,9 @@
 
 # # # for fileName in glob.glob( r'Z:\\smxm\\shots\\ep001\\*\\set\\scene\\ok\\*.abc'):
 # # # for fileName in glob.glob(r"Z:/smxm/shots/ep001/*/*/cache/geocache/*/*.abc"):
-# # # 	print fileName
+# # #   print fileName
 # # for fileName in glob.glob(r"Z:/smxm/shots/ep001/*/*/set/scene/ok/*.abc"):
-# # 	print fileName
+# #     print fileName
 
 # # f= glob.iglob(r'../*.py')
 # # print f
@@ -5164,13 +5164,13 @@
 # import os
 # import maya.OpenMayaUI as omui
 # # import shiboken2 as shiboken
-from Qt import QtWidgets, QtCore,QtGui
+# from Qt import QtWidgets, QtCore,QtGui
 # from PySide2 import QtWidgets, QtCore 
 # try:
 #     from PySide2.QtWidgets import *
 # except:
 #     from PyQt5.QtWidgets import *
-    
+	
 # from Qt.QtCore import *
 # from Qt.QtGui import *
 # from Qt.QtWidgets import *
@@ -5180,274 +5180,274 @@ from Qt import QtWidgets, QtCore,QtGui
 
 # class Form(QtWidgets.QMainWindow):
 
-# 	_signal = QtCore.Signal(str,str)
+#   _signal = QtCore.Signal(str,str)
 
-# 	def __init__(self,parent=None):
-# 		super(Form,self).__init__(parent)
-# 		self.initUI()
+#   def __init__(self,parent=None):
+#       super(Form,self).__init__(parent)
+#       self.initUI()
 
-# 	def initUI(self):
-# 		# self.addLabel()
-# 		# self.addLine()
-# 		self.setInitdata()
-# 		self.addcombBox()
-# 		# self.addtextEdit()
-# 		self.addpushButton()
-# 		self.currentTime = time.time()
-# 		self.setSignal()
-# 		self.setWindowTitle("Light Shot Maker")
-# 		self.slot_initCurrentTask(0)
-# 		self.resize(500,80)
-# 		self.move(500,200)
-# 		self.run = False
-# 		# self.show()
+#   def initUI(self):
+#       # self.addLabel()
+#       # self.addLine()
+#       self.setInitdata()
+#       self.addcombBox()
+#       # self.addtextEdit()
+#       self.addpushButton()
+#       self.currentTime = time.time()
+#       self.setSignal()
+#       self.setWindowTitle("Light Shot Maker")
+#       self.slot_initCurrentTask(0)
+#       self.resize(500,80)
+#       self.move(500,200)
+#       self.run = False
+#       # self.show()
 
-# 	def setInitdata(self):
-# 		self.serverRoot = os.environ['SERVER_ROOT'].capitalize()
-# 		self.currentTime = time.time()
+#   def setInitdata(self):
+#       self.serverRoot = os.environ['SERVER_ROOT'].capitalize()
+#       self.currentTime = time.time()
 
 
-# 	def addLabel(self):
-# 		labelProj = QLabel('PROJECT',self)
-# 		labelProj.resize = (100,100)
-# 		labelProj.move(20,10)
-# 		labelSeq = QLabel('SEQ',self)
-# 		labelSeq.resize = (100,100)
-# 		labelSeq.move(20,30)
-# 		labelShot = QLabel('SHOT',self)
-# 		labelShot.resize = (100,100)
-# 		labelShot.move(20,50)
+#   def addLabel(self):
+#       labelProj = QLabel('PROJECT',self)
+#       labelProj.resize = (100,100)
+#       labelProj.move(20,10)
+#       labelSeq = QLabel('SEQ',self)
+#       labelSeq.resize = (100,100)
+#       labelSeq.move(20,30)
+#       labelShot = QLabel('SHOT',self)
+#       labelShot.resize = (100,100)
+#       labelShot.move(20,50)
 
-# 	def addLine(self):
-# 		lineProj = QFrame(self)
-# 		lineProj.setGeometry(QRect(65,9,10,14))
-# 		lineProj.setFrameShape(QFrame.VLine)
-# 		lineProj.setFrameShadow(QFrame.Raised)
-# 		lineSeq = QFrame(self)
-# 		lineSeq.setGeometry(QRect(65,29,10,14))
-# 		lineSeq.setFrameShape(QFrame.VLine)
-# 		lineSeq.setFrameShadow(QFrame.Raised)
-# 		lineShot = QFrame(self)
-# 		lineShot.setGeometry(QRect(65,49,10,14))
-# 		lineShot.setFrameShape(QFrame.VLine)
-# 		lineShot.setFrameShadow(QFrame.Raised)
-# 		lineShot = QFrame(self)
-# 		lineShot.setGeometry(QRect(65,49,10,14))
-# 		lineShot.setFrameShape(QFrame.VLine)
-# 		lineShot.setFrameShadow(QFrame.Raised)
+#   def addLine(self):
+#       lineProj = QFrame(self)
+#       lineProj.setGeometry(QRect(65,9,10,14))
+#       lineProj.setFrameShape(QFrame.VLine)
+#       lineProj.setFrameShadow(QFrame.Raised)
+#       lineSeq = QFrame(self)
+#       lineSeq.setGeometry(QRect(65,29,10,14))
+#       lineSeq.setFrameShape(QFrame.VLine)
+#       lineSeq.setFrameShadow(QFrame.Raised)
+#       lineShot = QFrame(self)
+#       lineShot.setGeometry(QRect(65,49,10,14))
+#       lineShot.setFrameShape(QFrame.VLine)
+#       lineShot.setFrameShadow(QFrame.Raised)
+#       lineShot = QFrame(self)
+#       lineShot.setGeometry(QRect(65,49,10,14))
+#       lineShot.setFrameShape(QFrame.VLine)
+#       lineShot.setFrameShadow(QFrame.Raised)
 
-# 	def addcombBox(self):
-# 		self.cBoxProj = QComboBox(self)
-# 		self.cBoxProj.setGeometry(QRect(20,9,80,20))
-# 		self.cBoxSeq = QComboBox(self)
-# 		self.cBoxSeq.setGeometry(QRect(110,9,80,20))
-# 		self.cBoxShots = QComboBox(self)
-# 		self.cBoxShots.setGeometry(QRect(200,9,80,20))
-# 		self.cBoxShot = QComboBox(self)
-# 		self.cBoxShot.setGeometry(QRect(290,9,80,20))
+#   def addcombBox(self):
+#       self.cBoxProj = QComboBox(self)
+#       self.cBoxProj.setGeometry(QRect(20,9,80,20))
+#       self.cBoxSeq = QComboBox(self)
+#       self.cBoxSeq.setGeometry(QRect(110,9,80,20))
+#       self.cBoxShots = QComboBox(self)
+#       self.cBoxShots.setGeometry(QRect(200,9,80,20))
+#       self.cBoxShot = QComboBox(self)
+#       self.cBoxShot.setGeometry(QRect(290,9,80,20))
 
-# 	def addtextEdit(self):
-# 		tEditShot = QLineEdit(self)
-# 		tEditShot.setGeometry(QRect(90,49,80,20))
+#   def addtextEdit(self):
+#       tEditShot = QLineEdit(self)
+#       tEditShot.setGeometry(QRect(90,49,80,20))
 
-# 	def addpushButton(self):
-# 		self.pButtonGet = QPushButton('Get',self)
-# 		self.pButtonGet.setGeometry(QRect(380,29,80,20))
+#   def addpushButton(self):
+#       self.pButtonGet = QPushButton('Get',self)
+#       self.pButtonGet.setGeometry(QRect(380,29,80,20))
 
-# 	def setSignal(self):
-# 		self.cBoxProj.currentTextChanged.connect(lambda: self.slot_initCurrentTask(1))
-# 		self.cBoxSeq.currentTextChanged.connect(lambda: self.slot_initCurrentTask(2))
-# 		self.cBoxShots.currentTextChanged.connect(lambda: self.slot_initCurrentTask(3))
-# 		self.pButtonGet.clicked.connect(self.popWindow)
+#   def setSignal(self):
+#       self.cBoxProj.currentTextChanged.connect(lambda: self.slot_initCurrentTask(1))
+#       self.cBoxSeq.currentTextChanged.connect(lambda: self.slot_initCurrentTask(2))
+#       self.cBoxShots.currentTextChanged.connect(lambda: self.slot_initCurrentTask(3))
+#       self.pButtonGet.clicked.connect(self.popWindow)
 
-# 	def slot_initCurrentTask(self, order):
-# 		time_start = time.time()
-# 		time_space = time_start - self.currentTime
+#   def slot_initCurrentTask(self, order):
+#       time_start = time.time()
+#       time_space = time_start - self.currentTime
 
-# 		if time_space > 0.6 and self.run == False:
-# 			thread = threading.Thread(target=self.call_reloadCurrentFunction)
-# 			thread.start()
-# 		if order == 0:
-# 			self.cBoxProj.clear()
-# 			ignoreProjectList = ['smxm']
-# 			for item in os.listdir(self.serverRoot+'/'):
-# 				if item in ignoreProjectList:
-# 					self.cBoxProj.addItem(item)	
-# 		if order == 1:
-# 			self.projectName = self.cBoxProj.currentText()
-# 			self.cBoxSeq.clear()
-# 			self.projPath = self.serverRoot+'/' + self.projectName + '/shots/' 
-# 			for item in sorted(os.listdir(self.projPath)):
-# 				self.cBoxSeq.addItem(item)
-# 		if order == 2:
-# 			self.seq = self.cBoxSeq.currentText()
-# 			self.cBoxShots.clear()
-# 			self.seqPath = self.projPath + self.seq + '/'
-# 			for item in sorted(os.listdir(self.seqPath)):
-# 				self.cBoxShots.addItem(item)
-# 		if order == 3:
-# 			self.shots = self.cBoxShots.currentText()
-# 			self.cBoxShot.clear()
-# 			self.shotPath = self.seqPath + self.shots + '/'
-# 			for item in sorted(os.listdir(self.shotPath)):
-# 				self.cBoxShot.addItem(item)
-# 		self.currentTime = time.time()
+#       if time_space > 0.6 and self.run == False:
+#           thread = threading.Thread(target=self.call_reloadCurrentFunction)
+#           thread.start()
+#       if order == 0:
+#           self.cBoxProj.clear()
+#           ignoreProjectList = ['smxm']
+#           for item in os.listdir(self.serverRoot+'/'):
+#               if item in ignoreProjectList:
+#                   self.cBoxProj.addItem(item) 
+#       if order == 1:
+#           self.projectName = self.cBoxProj.currentText()
+#           self.cBoxSeq.clear()
+#           self.projPath = self.serverRoot+'/' + self.projectName + '/shots/' 
+#           for item in sorted(os.listdir(self.projPath)):
+#               self.cBoxSeq.addItem(item)
+#       if order == 2:
+#           self.seq = self.cBoxSeq.currentText()
+#           self.cBoxShots.clear()
+#           self.seqPath = self.projPath + self.seq + '/'
+#           for item in sorted(os.listdir(self.seqPath)):
+#               self.cBoxShots.addItem(item)
+#       if order == 3:
+#           self.shots = self.cBoxShots.currentText()
+#           self.cBoxShot.clear()
+#           self.shotPath = self.seqPath + self.shots + '/'
+#           for item in sorted(os.listdir(self.shotPath)):
+#               self.cBoxShot.addItem(item)
+#       self.currentTime = time.time()
 
-# 	def call_reloadCurrentFunction(self):
-# 		self.run = True
-# 		time.sleep(0.6)
-# 		self.run = False
-# 		self.move(500,200)
+#   def call_reloadCurrentFunction(self):
+#       self.run = True
+#       time.sleep(0.6)
+#       self.run = False
+#       self.move(500,200)
 
-# 	def popWindow(self):
-# 		self.proj = self.cBoxProj.currentText()
-# 		self.seq = self.cBoxSeq.currentText()
-# 		self.shots = self.cBoxShots.currentText()
-# 		self.shot = self.cBoxShot.currentText()
-# 		self.ui2 = Ui_Form()
-# 		self.ui2.getData(self.proj,self.seq,self.shots,self.shot)
-# 		self.ui2.show()
+#   def popWindow(self):
+#       self.proj = self.cBoxProj.currentText()
+#       self.seq = self.cBoxSeq.currentText()
+#       self.shots = self.cBoxShots.currentText()
+#       self.shot = self.cBoxShot.currentText()
+#       self.ui2 = Ui_Form()
+#       self.ui2.getData(self.proj,self.seq,self.shots,self.shot)
+#       self.ui2.show()
 
-# 	def set_param(self):
-# 		proj = self.cBoxProj.currentText()
-# 		seq = self.cBoxSeq.currentText()
-# 		shots = self.cBoxShots.currentText()
-# 		shot = self.cBoxShot.currentText()
+#   def set_param(self):
+#       proj = self.cBoxProj.currentText()
+#       seq = self.cBoxSeq.currentText()
+#       shots = self.cBoxShots.currentText()
+#       shot = self.cBoxShot.currentText()
 
 # class Ui_Form(QtWidgets.QWidget):
 
-# 	def __init__(self,parent = None):
-# 		super(Ui_Form,self).__init__(parent)
-# 		self.initUI() 
+#   def __init__(self,parent = None):
+#       super(Ui_Form,self).__init__(parent)
+#       self.initUI() 
 		
 
-# 	def initUI(self):
-# 		self.resize(500,500)
-# 		self.addtreeWidget()
-# 		self.addpushButton()
-# 		self.set_signal()
+#   def initUI(self):
+#       self.resize(500,500)
+#       self.addtreeWidget()
+#       self.addpushButton()
+#       self.set_signal()
 
-# 	def addtreeWidget(self):
-# 		self.treeMain = QTreeWidget(self)
-# 		self.treeMain.setGeometry(QRect(10,10,400,400))
-# 		self.treeMain.itemChanged.connect(self.autoCheckable)
+#   def addtreeWidget(self):
+#       self.treeMain = QTreeWidget(self)
+#       self.treeMain.setGeometry(QRect(10,10,400,400))
+#       self.treeMain.itemChanged.connect(self.autoCheckable)
 
-# 	def addpushButton(self):
-# 		self.pButtonBuild = QPushButton('BUILD',self)
-# 		self.pButtonBuild.setGeometry(QRect(420,430,70,20))
+#   def addpushButton(self):
+#       self.pButtonBuild = QPushButton('BUILD',self)
+#       self.pButtonBuild.setGeometry(QRect(420,430,70,20))
 
-# 	def set_signal(self):
-# 		self.pButtonBuild.clicked.connect(self.buildScene)
+#   def set_signal(self):
+#       self.pButtonBuild.clicked.connect(self.buildScene)
 
-# 	def settreeWidget(self):
-# 		self.treeMain.setColumnCount(2)
-# 		self.headerList = ['TYPE','NAME']
-# 		self.treeMain.setHeaderLabels(self.headerList)
-# 		self.root_char = QTreeWidgetItem(self.treeMain)
-# 		self.root_char.setText(0,'char')
-# 		self.root_char.setCheckState(0,Qt.Checked)
-# 		self.root_prop = QTreeWidgetItem(self.treeMain)
-# 		self.root_prop.setText(0,'prop')
-# 		self.root_prop.setCheckState(0,Qt.Checked)
-# 		self.root_set = QTreeWidgetItem(self.treeMain)
-# 		self.root_set.setText(0,'set')
-# 		self.root_set.setCheckState(0,Qt.Checked)
-# 		shotinfo = self.get_assets()
-# 		char_list = shotinfo['char']
-# 		set_list = shotinfo['set']
-# 		prop_list = shotinfo['prop']
-# 		if char_list:			
-# 			for char in char_list:
-# 				assetnameItem = char['name'] + (str(char['id']) if char['id'] else '')
-# 				child = QTreeWidgetItem()
-# 				child.setText(1,assetnameItem)
-# 				child.setCheckState(1,Qt.Checked)
-# 				self.root_char.addChild(child)				
-# 		# if set_list:
-# 		# 	for sets in set_list:
-# 		# 		assetnameItem = sets['name'] + (str(sets['id']) if sets['id'] else '')
-# 		# 		child = QTreeWidgetItem()
-# 		# 		child.setText(1,assetnameItem)
-# 		# 		child.setCheckState(1,Qt.Checked)
-# 		# 		self.root_set.addChild(child)
-# 		if prop_list:
-# 			for prop in prop_list:
-# 				assetnameItem = prop['name'] + (str(prop['id']) if prop['id'] else '')
-# 				child = QTreeWidgetItem()
-# 				child.setText(1,assetnameItem)
-# 				child.setCheckState(1,Qt.Checked)
-# 				self.root_prop.addChild(child)
+#   def settreeWidget(self):
+#       self.treeMain.setColumnCount(2)
+#       self.headerList = ['TYPE','NAME']
+#       self.treeMain.setHeaderLabels(self.headerList)
+#       self.root_char = QTreeWidgetItem(self.treeMain)
+#       self.root_char.setText(0,'char')
+#       self.root_char.setCheckState(0,Qt.Checked)
+#       self.root_prop = QTreeWidgetItem(self.treeMain)
+#       self.root_prop.setText(0,'prop')
+#       self.root_prop.setCheckState(0,Qt.Checked)
+#       self.root_set = QTreeWidgetItem(self.treeMain)
+#       self.root_set.setText(0,'set')
+#       self.root_set.setCheckState(0,Qt.Checked)
+#       shotinfo = self.get_assets()
+#       char_list = shotinfo['char']
+#       set_list = shotinfo['set']
+#       prop_list = shotinfo['prop']
+#       if char_list:           
+#           for char in char_list:
+#               assetnameItem = char['name'] + (str(char['id']) if char['id'] else '')
+#               child = QTreeWidgetItem()
+#               child.setText(1,assetnameItem)
+#               child.setCheckState(1,Qt.Checked)
+#               self.root_char.addChild(child)              
+#       # if set_list:
+#       #   for sets in set_list:
+#       #       assetnameItem = sets['name'] + (str(sets['id']) if sets['id'] else '')
+#       #       child = QTreeWidgetItem()
+#       #       child.setText(1,assetnameItem)
+#       #       child.setCheckState(1,Qt.Checked)
+#       #       self.root_set.addChild(child)
+#       if prop_list:
+#           for prop in prop_list:
+#               assetnameItem = prop['name'] + (str(prop['id']) if prop['id'] else '')
+#               child = QTreeWidgetItem()
+#               child.setText(1,assetnameItem)
+#               child.setCheckState(1,Qt.Checked)
+#               self.root_prop.addChild(child)
 
-# 	def autoCheckable(self,item,column):
-# 		if item and column == 0 and item.text(0)!='set':
-# 			topitemState = item.checkState(0)
-# 			for i in range(item.childCount()):
-# 				childItem = item.child(i)
-# 				childItem.setCheckState(1,topitemState)
-# 		# if item.parent():
-# 		# 	if item.parent().text(0) == 'set':
-# 		# 		itemState = item.checkState(0)
-# 		# 		for i in range(item.parent().childCount()):
-# 		# 			broItem = item.parent().child(i)
-# 		# 			broItem.setCheckState(1,itemState)
+#   def autoCheckable(self,item,column):
+#       if item and column == 0 and item.text(0)!='set':
+#           topitemState = item.checkState(0)
+#           for i in range(item.childCount()):
+#               childItem = item.child(i)
+#               childItem.setCheckState(1,topitemState)
+#       # if item.parent():
+#       #   if item.parent().text(0) == 'set':
+#       #       itemState = item.checkState(0)
+#       #       for i in range(item.parent().childCount()):
+#       #           broItem = item.parent().child(i)
+#       #           broItem.setCheckState(1,itemState)
 
-# 	def get_assets(self):
-# 		print self.proj
-# 		print self.shot
-# 		shotinfo = get_shot_info(self.proj,self.shot)
-# 		return shotinfo
+#   def get_assets(self):
+#       print self.proj
+#       print self.shot
+#       shotinfo = get_shot_info(self.proj,self.shot)
+#       return shotinfo
 
-# 	def getData(self,proj='1',seq= '1',shots = '1',shot = '1'):
-# 		self.proj = proj
-# 		self.seq = seq
-# 		self.shots = shots
-# 		self.shot = shot
-# 		self.settreeWidget()
+#   def getData(self,proj='1',seq= '1',shots = '1',shot = '1'):
+#       self.proj = proj
+#       self.seq = seq
+#       self.shots = shots
+#       self.shot = shot
+#       self.settreeWidget()
 
-# 	def buildScene(self):
-# 		look = 'main'
-# 		asset_dict = self.get_checked_asset()
-# 		print asset_dict
-# 		for asset_name in asset_dict.keys():
-# 			ref_asset_srf(self.proj,self.shot,str(asset_dict[asset_name]),str(asset_name),look)
-# 			group_type_asset(asset_dict[asset_name],asset_name)
-# 			merge_cache(self.proj,self.shot,asset_name,True)
-# 		if self.root_set.checkState(0):
-# 			ref_asset_set(self.proj,self.shot)
-# 		if not cmds.objExists('%s_cam'%(self.shot)):
-# 			ref_cam_cache(self.proj,self.shot)
-# 		set_time_range(self.proj,self.shot)
+#   def buildScene(self):
+#       look = 'main'
+#       asset_dict = self.get_checked_asset()
+#       print asset_dict
+#       for asset_name in asset_dict.keys():
+#           ref_asset_srf(self.proj,self.shot,str(asset_dict[asset_name]),str(asset_name),look)
+#           group_type_asset(asset_dict[asset_name],asset_name)
+#           merge_cache(self.proj,self.shot,asset_name,True)
+#       if self.root_set.checkState(0):
+#           ref_asset_set(self.proj,self.shot)
+#       if not cmds.objExists('%s_cam'%(self.shot)):
+#           ref_cam_cache(self.proj,self.shot)
+#       set_time_range(self.proj,self.shot)
 		
-# 	def get_checked_asset(self):
-# 		asset_dict = {}
-# 		for i in range(self.root_char.childCount()):
-# 			item = self.root_char.child(i)
-# 			if item.checkState(1):
-# 				asset_dict[item.text(1)] = 'char'
-# 		# for i in range(self.root_set.childCount()):
-# 		# 	item = self.root_set.child(i)
-# 		# 	if item.checkState(1):
-# 		# 		asset_dict[item.text(1)] = 'set'
-# 		for i in range(self.root_prop.childCount()):
-# 			item = self.root_prop.child(i)
-# 			if item.checkState(1):
-# 				asset_dict[item.text(1)] = 'prop'
-# 		return asset_dict
+#   def get_checked_asset(self):
+#       asset_dict = {}
+#       for i in range(self.root_char.childCount()):
+#           item = self.root_char.child(i)
+#           if item.checkState(1):
+#               asset_dict[item.text(1)] = 'char'
+#       # for i in range(self.root_set.childCount()):
+#       #   item = self.root_set.child(i)
+#       #   if item.checkState(1):
+#       #       asset_dict[item.text(1)] = 'set'
+#       for i in range(self.root_prop.childCount()):
+#           item = self.root_prop.child(i)
+#           if item.checkState(1):
+#               asset_dict[item.text(1)] = 'prop'
+#       return asset_dict
 
 # def get_shot_assets(proj,seq,shots,shot):
-# 	print proj,seq,shots,shot
-# 	app = QtWidgets.QApplication.instance()
-# 	uiSide = assetList()
-# 	uiSide.show()
+#   print proj,seq,shots,shot
+#   app = QtWidgets.QApplication.instance()
+#   uiSide = assetList()
+#   uiSide.show()
 
 
 # def main():
-# 	app = QtWidgets.QApplication.instance()
-# 	if app == None:
-# 		app = QtWidgets.QApplication(sys.argv)
-# 	ui = Form()
-# 	ui.show()
-# 	app.exec_()
+#   app = QtWidgets.QApplication.instance()
+#   if app == None:
+#       app = QtWidgets.QApplication(sys.argv)
+#   ui = Form()
+#   ui.show()
+#   app.exec_()
 
 # import sys
 # sys.path.append(r"D:\zhaojiayi\TST\tstcode\GitTsT")
@@ -5510,16 +5510,16 @@ from Qt import QtWidgets, QtCore,QtGui
 # de = xgg.DescriptionEditor
 # palettesList = xg.palettes()
 # for palette in palettesList:
-# 	descriptions =  xgen.descriptions(palette)
-# 	for description in descriptions:
-# 	    des = description.split(":")[-1]
-# 	    filePath = "Z:\smxm\shots\ep001\dhd\dhd067\cache\haircache\c023001lang1\curves\{c023001lang1}_%s.abc"%(description.split(":")[-1])
-# 	    if os.path.isfile(filePath):
-# 		    xgen.setAttr('cacheFileName',filePath,palette,description,'SplinePrimitive')
-# 		    xgen.setAttr('liveMode','False',palette,description,'SplinePrimitive')
-# 	for description in descriptions:
-# 		cmds.xgmPreview(description)
-# 		de.previewer.execute()
+#   descriptions =  xgen.descriptions(palette)
+#   for description in descriptions:
+#       des = description.split(":")[-1]
+#       filePath = "Z:\smxm\shots\ep001\dhd\dhd067\cache\haircache\c023001lang1\curves\{c023001lang1}_%s.abc"%(description.split(":")[-1])
+#       if os.path.isfile(filePath):
+#           xgen.setAttr('cacheFileName',filePath,palette,description,'SplinePrimitive')
+#           xgen.setAttr('liveMode','False',palette,description,'SplinePrimitive')
+#   for description in descriptions:
+#       cmds.xgmPreview(description)
+#       de.previewer.execute()
 
 # de.refresh("Full")
 # -------------------------------------------------------------------------------------
@@ -5557,29 +5557,29 @@ from Qt import QtWidgets, QtCore,QtGui
 # shotsList = os.listdir(projPath)
 # filepathList = []
 # for shots in shotsList:
-# 	shotsPath = os.path.join(projPath,shots)
-# 	shotList = os.listdir(shotsPath)
-# 	for shot in shotList:
-# 		if signal == 'lay':
-# 			shotPath = os.path.join(shotsPath,shot,'animation\\lay\\ok')
-# 			if os.path.isdir(shotPath):
-# 				filePath = shotPath + '\\' + shot + '_lay_ok.mov'
-# 				if os.path.isfile(filePath):
-# 					filepathList.append(filePath)
-# 		elif signal == 'set':
-# 			shotPath = os.path.join(shotsPath,shot,'set\\scene\\ok')
-# 			if os.path.isdir(shotPath):
-# 				filePath = shotPath + '\\' + shot + '_scene_ok.mov'
-# 				if os.path.isfile(filePath):
-# 					filepathList.append(filePath)
+#   shotsPath = os.path.join(projPath,shots)
+#   shotList = os.listdir(shotsPath)
+#   for shot in shotList:
+#       if signal == 'lay':
+#           shotPath = os.path.join(shotsPath,shot,'animation\\lay\\ok')
+#           if os.path.isdir(shotPath):
+#               filePath = shotPath + '\\' + shot + '_lay_ok.mov'
+#               if os.path.isfile(filePath):
+#                   filepathList.append(filePath)
+#       elif signal == 'set':
+#           shotPath = os.path.join(shotsPath,shot,'set\\scene\\ok')
+#           if os.path.isdir(shotPath):
+#               filePath = shotPath + '\\' + shot + '_scene_ok.mov'
+#               if os.path.isfile(filePath):
+#                   filepathList.append(filePath)
 # cmdPath = ' '.join(filepathList)
 # cmd = rvPath + ' ' + cmdPath
 # os.system(cmd)
 
 # def get_shot_info(proj,shot):
-# 	xlsx_path = "Z:\\%s\\database\\casting\\main.xlsx"%proj
-# 	shotinfo = Function.getShot(xlsx_path, shot)
-# 	return shotinfo
+#   xlsx_path = "Z:\\%s\\database\\casting\\main.xlsx"%proj
+#   shotinfo = Function.getShot(xlsx_path, shot)
+#   return shotinfo
 
 # proj = 'smxm'
 # shot = 'dhd066'
@@ -5606,14 +5606,41 @@ from Qt import QtWidgets, QtCore,QtGui
 # import xgenm.XgExternalAPI as xge
 # palettes = xg.palettes()
 # for palette in palettes:
-#     descriptions = xg.descriptions(palette)
-#     for description in descriptions:
-#         objects = xg.objects(palette, description, True)
-#         for object in objects:
-#             attrs = xg.allAttrs(palette, description, object)
-#             for attr in attrs:
-#                 if "ensity" in attr:
-#                     _value = xg.getAttr(attr, palette, description, object)
-#                     print(_value,float(_value)/2)
-#                     xg.setAttr(attr,str(float(_value)/2),palette, description, object
+# 	descriptions = xg.descriptions(palette)
+# 	for description in descriptions:
+# 		objects = xg.objects(palette, description, True)
+# 		for object in objects:
+# 			attrs = xg.allAttrs(palette, description, object)
+# 			for attr in attrs:
+# 				if "ensity" in attr:
+# 					_value = xg.getAttr(attr, palette, description, object)
+# 					print(_value,float(_value)/10)
+# 					xg.setAttr(attr,str(float(_value)/10),palette, description, object)
 # -------------------------------------------------------------------------------------------------
+
+import sys
+sys.path.append('D:\\zhaojiayi\\Documents\\coco')
+import os
+import getpass
+import cocoPipeline.lib.python.ftrackLib.ftrackSession as ftrackSession
+reload(ftrackSession)
+import cocoPipeline.lib.python.ftrackLib.ftrackQuery as ftrackQuery
+reload(ftrackQuery)
+# from cocoPipeline.lib.python.dataLib import entityObject
+
+# getUserName = getpass.getuser()
+session = ftrackSession.createSession()
+# print session.types.keys()
+# projectName = 'TDtest'
+# projectName = 'Goodbye_Monster'
+# getUserName = getpass.getuser()
+# projects = session.query('Project where name is "{0}"'.format(projectName)).first()
+# getUserName = os.environ['USER']
+# UserMessage = session.query('User where username is "{0}"'.format(getUserName)).one()
+# entity = entityObject.Project().objects(projectName)
+# print type(entity)
+# location = session.query('Location where name is "{0}"'.format(entity.ftrack_pipeline_location)).one()
+# serverRoot = os.path.abspath(location.get_accessor_prefix())
+
+
+
