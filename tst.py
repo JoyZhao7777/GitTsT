@@ -4993,6 +4993,9 @@
 #           auto_copy_uv(asset)
 #           print '----------------------------------------------'
 
+# assetName = 'c002001xiongmaoc'
+# print assetName[7:-1]
+
 
 
 
@@ -5618,18 +5621,22 @@
 # 					xg.setAttr(attr,str(float(_value)/10),palette, description, object)
 # -------------------------------------------------------------------------------------------------
 
-import sys
-sys.path.append('D:\\zhaojiayi\\Documents\\coco')
-import os
-import getpass
-import cocoPipeline.lib.python.ftrackLib.ftrackSession as ftrackSession
-reload(ftrackSession)
-import cocoPipeline.lib.python.ftrackLib.ftrackQuery as ftrackQuery
-reload(ftrackQuery)
+# import sys
+# sys.path.append('D:\\zhaojiayi\\Documents\\coco')
+# import os
+# import getpass
+# from cocoPipeline.lib.python import resource
+# from cocoLib.python.configLib import confParser
+# reload(confParser)
+# reload(resource)
+# import cocoPipeline.lib.python.ftrackLib.ftrackSession as ftrackSession
+# reload(ftrackSession)
+# import cocoPipeline.lib.python.ftrackLib.ftrackQuery as ftrackQuery
+# reload(ftrackQuery)
 # from cocoPipeline.lib.python.dataLib import entityObject
 
 # getUserName = getpass.getuser()
-session = ftrackSession.createSession()
+# session = ftrackSession.createSession()
 # print session.types.keys()
 # projectName = 'TDtest'
 # projectName = 'Goodbye_Monster'
@@ -5641,6 +5648,160 @@ session = ftrackSession.createSession()
 # print type(entity)
 # location = session.query('Location where name is "{0}"'.format(entity.ftrack_pipeline_location)).one()
 # serverRoot = os.path.abspath(location.get_accessor_prefix())
+# mapAttrDicView['taskName'] = 'surface'
+# mapAttrDicView['subTaskName'] = 'view'
+# mapAttrDicView['assetFile'] = 'sourceimages'
+# def get_entity():
+#     entity_template = os.path.realpath(os.path.join(resource.get_config(), 'mapping.yml'))
+#     print entity_template
+#     cp = confParser.DeepYamlParser(entity_template)
+#     return cp.parse()
+# # print get_entity()
 
+# Dir = "Z:\\smxm\\assets\\char\\c001001xiongmaox\\surface\\look\\main\\ok\\c001001xiongmaox_look_main.ma"
+# Dir =       'Z:/         smxm/           shots/    ep001/       dhd/dhd067/       lgt/     lighting/workarea/xm_shots_dhd067_lgt_deep_2019_v001.mb'
+# '{projectRoot}/{projectName}/{productionType}/{episode}/{sequence}/{shot}/{taskName}/{subTaskName}/{assetFile}'
+# folderList[-1], folderList[-2], folderList[-3], folderList[-4], folderList[-5], folderList[-8]
+# folderList[-2], folderList[-3], folderList[-4], folderList[-5], folderList[-8]
+
+# --------------------------
+
+# import sys
+# sys.path.append('D:\\zhaojiayi\\Documents\\coco')
+# import os
+# import getpass
+# import cocoPipeline.lib.python.ftrackLib.ftrackSession as ftrackSession
+# reload(ftrackSession)
+# import cocoPipeline.lib.python.ftrackLib.ftrackQuery as ftrackQuery
+# reload(ftrackQuery)
+# from cocoPipeline.lib.python.dataLib import entityObject
+# from cocoPipeline.lib.python.dataLib import getEntity
+# projectName = 'TDtest'
+# session = ftrackSession.createSession()
+# entity = entityObject.Project().objects(projectName)
+# location = session.query('Location where name is "{0}"'.format(entity.ftrack_pipeline_location)).one()
+# serverRoot = os.path.abspath(location.get_accessor_prefix())
+# serverRoot = os.environ['SERVER_ROOT'].capitalize()
+# task = session.query(
+# 			'Task where parent.name is "{0}" \
+# 			 and parent.parent.name is "{1}" \
+# 			 and parent.parent.parent.name is "{2}" \
+# 			 and parent.parent.parent.parent.name is "{3}" \
+# 			 and project.name is "{4}"'\
+# 			 .format('comp', 'cmp', 'hdd', 'ep001', 'TDtest')
+# 		)
+# asset = session.query(
+# 			'Asset where name is "{0}" \
+# 			 and parent.name is "{1}" \
+# 			 and parent.parent.name is "{2}" \
+# 			 and parent.parent.parent.name is "{3}" \
+# 			 and parent.parent.parent.parent.name is "{4}" \
+# 			 and project.name is "{5}"'\
+# 			 .format('comp', 'cmp', 'cmp', 'hdd','ep001', 'TDtest')
+# 		)
+
+# print task[0]
+# print asset[0]
+# 		王者荣耀_澜/shots/ep001/hdd/hdd076/animation/ani/ani
+# 'TDtest/shots/ep001/hdd/cmp/comp/comp'
+# project = session.query('Project').first()
+# print project['task_templates']
+# print session.types.keys()
+# projects = session.query('Project')
+# for proj in projects:
+# 	print proj['name']
+# active_projects = session.query('Project where status is active')
+# for proj in active_projects:
+# 	print proj['name']
+# projects[0].keys()
+# --------------------------
+
+# import json
+# jsonFile = "C:/Users/zhaojiayi/Desktop/tstfile/p006001shu_look_main.json"
+# assetName = 'p006001shu'
+# with open(jsonFile) as dataFile:
+# 	jsonData = json.load(dataFile)
+# 	shapeDicts = jsonData['geoProperty']
+# 	shapeList = shapeDicts.keys() 	
+# 	for shape in shapeList:
+# 		shapyDict = shapeDicts[shape]
+# 		print shapyDict['uv_link']
+# 		node = assetName + ':' + shape.split('|')[-1]
+# 		if cmds.objExists(node):
+# 			cmds.select(node)
+# 			indices = cmds.polyUVSet(node, query=True, allUVSetsIndices=True)
+# 			for k,v in shapyDict['uv_link'].items():
+# 				texture = assetName+ ':' + k
+# 				for i in indices[:]:
+# 					uvSetName = cmds.getAttr(node+".uvSet["+str(i)+"].uvSetName")
+# 					if uvSetName == v:
+# 						cmds.uvLink(make=True,uvSet =node+".uvSet["+str(i)+"].uvSetName",texture = texture )
+
+
+
+# cmds.select(mesh)
+# import os
+# filePath = 'Z:/smxm/shots/ep001/dhd/dhd071/cache/haircache/c023001lang1/patches'
+# fileName = os.listdir(filePath)
+# cmds.file('Z:/smxm/assets/prop/p006001shu/surface/look/main/ok/p006001shu_look_main.ma',loadReferenceDepth = 'asPrefs',loadReference = 'p006001shuRN')
+# import time 
+# import os
+# import re
+# ticks = time.time()
+# print ticks
+# a =  "Thu May 13 19:24:00 2021"
+# b =  "Thu May 13 19:24:24 2021"
+# print time.mktime(time.strptime(a,"%a %b %d %H:%M:%S %Y"))
+# fullPath = "Z:/smxm/assets/char/c001001xiongmaox/surface/look/main/sst/c001001xiongmaox_look_main_render.ma"
+# mtime = os.stat(fullPath).st_mtime
+# print mtime
+
+# fPath = 'Z:/smxm/assets/char/c001001xiongmaox/surface/look/main/ok'
+# b = "Z:/smxm/assets/char/c001001xiongmaox/surface/look/main/ok/c001001xiongmaox_look_main.ma"
+# pattern = r'(surface/look/main/ok*)'
+# print re.match(pattern,b)
+# for root, dirs,files in os.walk(fPath,topdown = False):
+# 	# print 'root'
+# 	# print root
+# 	# print 'dirs'
+# 	# print dirs
+# 	# print 'files'
+# 	# print files
+# 	# for name in files:
+# 	# 	if '/surface/look/main/ok/' in root and 'v0' not in root and 'ma' in name:
+# 	# 		print (os.path.join(root,name))
+# 	# for name in dirs:
+# 	# 	print (os.path.join(root,name))	
+# 	# for name in files:
+# 	# 	print '--------------------------------'
+# 	# 	# print (os.path.join(root,name))
+# 	# 	if '/surface/look/main/ok' in root:
+# 	# 		print (os.path.join(root,name))
+# 	# 		if 'v0' not in root:
+# 	# 			print (os.path.join(root,name))
+# 	# 			if '.ma' in name:
+# 	# 				print (os.path.join(root,name))
+# 	# 	print '--------------------------------'
+# 	print root
+# 	for name in files:
+# 		if '/surface/look/main/ok' in root:
+# 			if 'v0' not in root and '.ma' in name:
+# 				print (os.path.join(root,name))
+# fPath = 'Z:/smxm/assets/char/'
+# fPath = 'Z:/smxm/assets/prop/'
+
+# charList = os.listdir(fPath)
+# # print charList
+# for char in charList:
+#     srfPath = fPath + char + '/surface/look/main/ok/'
+#     if os.path.isdir(srfPath):
+#         fileList =  os.listdir(srfPath)
+#         for file in fileList:
+#             if '_render.ma' in file:
+#                 rederFile = srfPath + file
+#                 fileTime = os.stat(rederFile).st_mtime
+#                 # print fileTime,type(fileTime)
+#                 chuo = time.ctime(fileTime)
+#                 print rederFile,chuo
 
 
