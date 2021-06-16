@@ -5805,3 +5805,374 @@
 #                 print rederFile,chuo
 
 
+# listtst  = []
+# for l in listtst:
+#     print 'www'
+# import os,sys
+# sys.path.append('D:\\zhaojiayi\\Documents\\coco')
+# from cocoPipeline.lib.python import resource
+# from cocoLib.python.configLib import confParser
+# reload(confParser)
+
+# def get_entity():
+#     entity_template = os.path.realpath(os.path.join(resource.get_config(), 'mapping.yml'))
+#     cp = confParser.DeepYamlParser(entity_template)
+#     return cp.parse()
+
+# entity = get_entity()
+# taskWorkPath = entity['shot'].format(projectRoot='Z:',
+#                                       projectName='TDtest',
+#                                       productionType='shot',
+#                                       episode='ep001',
+#                                       sequence='dhd',
+#                                       shot='dhd066',
+#                                       taskName='animation',
+#                                       subTaskName='ani',
+#                                       assetFile='dhd066_ani_final.ma')
+# print os.path.abspath(taskWorkPath)
+
+# def get_entity():
+#    entity_template = os.path.realpath(os.path.join(resource.get_config(), 'mapping.yml'))
+#     cp = confParser.DeepYamlParser(entity_template)
+#     return cp.parse()  
+# def link_uv(proj,shot,assetType,assetName,look):
+#     # print '0000000000000000000000000000000000000000000000000000000000000000'
+#     # print 'linkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk'
+#     jsonFile = "Z:\\%s\\assets\\%s\\%s\\surface\\look\\%s\\ok\\%s_look_%s.json"%(proj,assetType,assetName.rstrip(string.digits),look,assetName.rstrip(string.digits),look)
+#     with open(jsonFile) as dataFile:
+#         jsonData = json.load(dataFile)
+#         shapeDicts = jsonData['geoProperty']
+#         shapeList = shapeDicts.keys()   
+#         for shape in shapeList:
+#             shapyDict = shapeDicts[shape]
+#             print shapyDict['uv_link']
+#             node = assetName + ':' + shape.split('|')[-1]
+#             if cmds.objExists(node):
+#                 cmds.select(node)
+#                 uvsets_list_before = cmds.polyUVSet( query=True, currentUVSet=True)
+#                 indices = cmds.polyUVSet(node, query=True, allUVSetsIndices=True)
+#                 for k,v in shapyDict['uv_link'].items():
+#                     texture = assetName+ ':' + k 
+#                     for i in indices[:]:
+#                         uvSetName = cmds.getAttr(node+".uvSet["+str(i)+"].uvSetName")
+#                         if uvSetName == v:
+#                             cmds.uvLink(make=True,uvSet =node+".uvSet["+str(i)+"].uvSetName",texture = texture )
+
+# import json
+# jsonFile = '\\\\hw.coco.co\\Pipeline2\\Z\\smxm\\assets\\prop\\p006001shu\\surface\\look\\main\\ok\\p006001shu_look_main.json'
+# with open(jsonFile) as dataFile:
+#     jsonData = json.load(dataFile)
+#     shapeDicts = jsonData['geoProperty']
+#     shapeList = shapeDicts.keys()
+#     for shape in shapeList:
+#         shapyDict = shapeDicts[shape]
+#         node = 'p006001shu' + ':' + shape.split('|')[-1]
+#         # currentuvSet = shapyDict['uv_link'].values()[0]
+#         print shapyDict['uv_link'].values()
+#         # if cmds.objExists(node):
+#         #     cmds.select(node)
+#         #     uvsets_list = cmds.polyUVSet( query=True, currentUVSet=True)
+#         #     print 'nnmnnnnnnnnnm'
+#         #     print uvsets_list
+#         #     if uvsets_list:
+#         #         if d_uvset not in uvsets_list:
+#         #             cmds.polyUVSet( create=True,uvSet=d_uvset)
+#         #             currentuvSet = shapyDict['uv_link'].values()[0]
+#         #             print 'aaaaaaaaaaaaaaaaaaaaaaaaa'
+#         #             print currentuvSet
+#         #             cmds.polyCopyUV(node,uvSetNameInput = currentuvSet,uvSetName= d_uvset)
+
+# lisr = []
+# if lisr:
+#     print 'sdjflkzhsd'
+
+# import subprocess
+# p = subprocess.Popen('ls',shell = True)
+# import json
+# assetName = 'p008001youzhu'
+# jsonFile = 'Z:\\smxm\\assets\\prop\\p008001youzhu\\surface\\look\\main\\ok\\p008001youzhu_look_main.json'
+# with open(jsonFile) as dataFile:
+#     jsonData = json.load(dataFile)
+#     shapeDicts = jsonData['geoProperty']
+#     shapeList = shapeDicts.keys()
+#     for shape in shapeList:
+#         shapyDict = shapeDicts[shape]
+#         node = assetName + ':' + shape.split('|')[-1]
+#         tx_list = shapyDict['uv_link'].values()
+#         # print node,tx_list
+#         if tx_list:
+#             print node,tx_list
+
+# C:/coco_dev/package/render/solidangle/6.2.0.1/win/maya2019/bin/kick.exe
+# arnoldExportAss -f "C:/Users/zhaojiayi/Desktop/tstfile/sdkjfhskjdfh.ass" -shadowLinks 1 -mask 6399 -lightLinks 1 -boundingBox -fullPath-cam perspShape;
+# system("start C:/coco_dev/package/render/solidangle/6.2.0.1/win/maya2019/bin/kick.exe " + '')
+
+# ---------------------------------renderkick---------------------------------------------------
+# command = 'C:/coco_dev/package/render/solidangle/6.2.0.1/win/maya2019/bin/kick.exe -i C:/Users/zhaojiayi/Desktop/tstfile/sdkjfhskjdfh.ass'
+# import subprocess
+# commands = ['C:/coco_dev/package/render/solidangle/6.2.0.1/win/maya2019/bin/kick.exe' ,
+#                 'C:/Users/zhaojiayi/Desktop/tstfile/sdkjfhskjdfh.ass',
+#                 '-v',"5",
+#                 '-logfile','d:/cccc.log']
+# env = None
+# p = subprocess.Popen(commands, env=env, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+# o,e = p.communicate()
+# -------------------------------------------------------------------------------------------------
+
+# '"Z:\smxm\assets\prop\p006001shu\surface\look\main\ok\p006001shu_look_main.json"'
+# import os,json
+# projPath = 'Z:\\smxm\\assets\\'
+# typeList = ['char','prop']
+# jsonList = []
+# errorList = ['Z:\\smxm\\assets\\char\\c016002xjinsihou\\surface\\look\\main\\ok\\c016002xjinsihou_look_main.json',\
+# 'Z:\\smxm\\assets\\char\\c017001yunbao\\surface\\look\\main\\ok\\c017001yunbao_look_main.json',\
+# 'Z:\\smxm\\assets\\char\\c021001hfjinjix\\surface\\look\\main\\ok\\c021001hfjinjix_look_main.json',\
+# 'Z:\\smxm\\assets\\char\\c022001hfjinjic\\surface\\look\\main\\ok\\c022001hfjinjic_look_main.json',\
+# 'Z:\\smxm\\assets\\char\\c024001xuebao\\surface\\look\\main\\ok\\c024001xuebao_look_main.json',\
+# 'Z:\\smxm\\assets\\char\\c028001lwhongzhi\\surface\\look\\main\\ok\\c028001lwhongzhi_look_main.json']
+# errorList = []
+# for t in typeList:
+#     asset_list=os.listdir(projPath + t)
+#     for a in asset_list:
+#         assetPath = projPath + t + '\\' + a + '\\surface\\look\\main\\ok\\' + a + '_look_main.json'
+#         if os.path.isfile(assetPath):
+#             jsonList.append(assetPath)
+# for j in jsonList:
+#     with open(j) as dataFile:
+#         jsonData = json.load(dataFile)
+#         if 'geoProperty' not in jsonData.keys():
+#             errorList.append(j)
+#         else:
+#             shapeDicts = jsonData['geoProperty']
+#             shapeList = shapeDicts.keys()
+#             for shape in shapeList:
+#                 shapyDict = shapeDicts[shape]
+#                 if 'uv_link' not in shapyDict.keys():
+#                     errorList.append(j)
+#                 else:
+#                     print shapyDict['uv_link']
+# errorList = list(set(errorList))
+# print errorList
+# import os,string,time
+# 'Z:\\smxm\\shots\\ep001\\dhd\\dhd066\\cache\\geocache\\c008001lu'
+# Z:/smxm/assets/prop/p006001shu/rigging/rig/main/ok/p006001shu_rig_main.ma
+# "Z:\smxm\shots\ep001\chd\chd046\cache\geocache\p006001shu\chd046_geocache_p006001shu.abc"
+# --------------------------------cache--------------------------------------------------------
+# rigList = ['p006002shu']
+# import os,string,time
+# # rigList = ['c003001xiongmaohz']
+# epPath = 'Z:/smxm/shots/ep001/'
+# errorDict = {}
+# errorShotDict = {}
+# shotList = []
+# seqList = os.listdir(epPath)
+# for s in seqList:
+#     seqPath = epPath + s
+#     shotlist = os.listdir(seqPath)
+#     for shot in shotlist:
+#         geoPath = seqPath + '/' + shot + '/cache/geocache/'
+#         if os.path.isdir(geoPath):
+#             cacheList = os.listdir(geoPath)
+#             for c in cacheList:
+#                 originCache = c.rstrip(string.digits)
+#                 if originCache in rigList:
+#                     errorDict.setdefault(c,[]).append(shot)
+#                     errorShotDict.setdefault(shot,[]).append(c)
+#                     abcPath = geoPath + c + '/'+ shot + '_geocache_' + c + '.abc'
+#                     fileTime = os.stat(abcPath).st_mtime
+#                     lTime =  time.asctime(time.localtime(fileTime))
+#                     if os.path.isfile(abcPath):
+#                         print abcPath
+#                         shotList.append(shot)
+#                     # print lTime
+# print shotList
+# --------------------------------cache--------------------------------------------------------
+#                     print shot,c
+# print errorDict
+# print errorShotDict
+# eShL =  errorShotDict.keys()
+# for e in eShL:
+#     print e,errorShotDict[e]b
+#     print errorShotDict[e]
+
+
+# assetPath = 'Z:/smxm/assets/prop/'
+# assetList = os.listdir(assetPath)
+# for a in assetList:
+#     if a in rigList:
+#         rigFile = assetPath + a + '/rigging/rig/main/ok/' + a + '_rig_main.ma'
+#         fileTime = os.stat(rigFile).st_mtime
+        # print time.asctime(time.localtime(fileTime)),a
+# t = [1]
+# if t:
+#     print 'sdhfk'
+# else:
+#     print '11111111'
+# -------------------------------------assetNAvi---------------------------------------------
+
+# print 'sdfjhsdfh'
+import re,os
+# # print (re.match('www','www.runoob.com').span())
+# # print (re.match('com','www.runoob.com'))
+# line = 'Cats are smarter than dogs'
+# matchObj = re.match(r'(.*) are (.*?) .*', line, re.M|re.I)
+# if matchObj:
+#     print 'matchObj.group() :',matchObj.group()
+#     print 'matchObj.group(1) :', matchObj.group(1)
+#     print 'matchObj.group(2) :', matchObj.group(2)
+#     print 'matchObj.groups() :', matchObj.groups()
+# else:
+#     print 'No match!'
+
+# projPath = 'Z:\\smxm\\assets\\'
+# typeList = os.listdir(projPath)
+# for t in typeList:
+#     typePath = projPath + '\\' + t
+#     assetList = os.listdir(typePath)
+#     for a in assetList:
+#         if re.match('^[a-z]+\\d',a):
+#             print a
+
+# line = '|test21:pCylinder1|test21:pCylinderShape1'
+# matchObj = re.match(r"\|.*\|", line, re.M|re.I)
+# print matchObj.groups()
+# # (?<=\|).*(?=\|)
+# for i in range(4):
+#     for j in range(3):                                            
+#         print (i+1)*(j+1) + j*(3-i)
+
+
+# def get_all_asset(proj):
+# proj = 'smxm'
+# projPath = 'Z:\\{0}\\assets\\'.format(proj)
+# typeList = os.listdir(projPath)
+# assetDict = {}
+# assetTypeDict = {}
+# for t in typeList:
+#     typePath = projPath + '\\' + t
+#     assetList = os.listdir(typePath)
+#     for a in assetList:
+#         if re.match('^[a-z]+\\d',a):
+#             assetDict[a] = t
+#             assetTypeDict.setdefault(t,[]).append(a)
+# print assetTypeDict
+    # return assetDict
+# filePath = 'Z:\\smxm\\shots\\ep001\\xhd\\xhd047\\cfx\\c002001xiongmaoc\\hair\\xhd047_c002001xiongmaoc_hair_preview__c002001xiongmaoc__xiongmaoc_HairCol.xgen'
+# file_handle = open(filePath , mode = 'r')
+# # content = file_handle.readlines()
+# c = file_handle.readline()
+# # c2 = file_handle.readline()
+# while 'endPatches' not in c:
+#     c = file_handle.readline()
+#     while 'Description' not in c:
+#         c = file_handle.readline()
+#         if 'density' in c:
+#             print c
+#         if 'width' in c:
+#             print c
+#     c = file_handle.readline()
+#     print c
+
+    # print c
+# c = file_handle.readline()
+# description = c
+# while ''
+
+# def write_json(file_path, data_dict={}):
+    # folder = os.path.dirname(file_path)
+
+    # if not os.path.exists(folder):
+    #     os.makedirs(folder)
+
+    # json_object = codecs.open(file_path, 'w', 'utf-8')
+    # json_object.write(dict_to_dumps(data_dict))
+    # json_object.close()
+# import json
+# data_dict = {'bigberg': [7600, {1: [['iPhone', 6300], ['Bike', 800], ['shirt', 300]]}]}
+# # json_str = json.dumps(data_dict)
+# # 'C:\Users\zhaojiayi\Desktop\tstfile'
+# file_path = 'C:\\Users\\zhaojiayi\\Desktop\\tstfile\\tst.json'
+# with open(file_path,'w') as f:
+#     json.dump(data_dict,f)
+
+# vstr = 'rand(0.8,1.6)'
+# minV = float((vstr.split(',')[0]).split('(')[1])
+# maxV = float((vstr.split(',')[1]).split(')')[0])
+# minVa =  minV*4
+# maxVa =  maxV*4
+# vastr = 'rand(' + str(minVa) + ',' + str(maxVa) + ')'
+# print vastr
+# proPng_ele = ['e021001cao','e013010caocong','e013011caocong','e013012caocong','e013013caocong','e013014caocong','e013015caocong',\
+# 'e013001caocong','e019002caocong',\
+# 'e015003dimian','e015006dimian','e015010dimian',\
+# 'e01001guanmu','e01002guanmu','e001003guanmu','e01005guanmu',\
+# 'e011001huacao','e011002huacao','e011003huacao']
+# proPng_ele = ['e021001cao','e013010caocong','e013011caocong','e013012caocong','e013013caocong','e013014caocong','e013015caocong',\
+# 'e013001caocong','e019002caocong',\
+# 'c031001dayan',\
+# 'e015003dimian','e015006dimian','e015010dimian',\
+# 'p009001guaigunz','p009002guaigunz',\
+# 'e01001guanmu','e01002guanmu','e001003guanmu','e01005guanmu',\
+# 'e011001huacao','e011002huacao','e011003huacao']
+# for p in proPng_ele:
+#     iconPath = 'Z:\\smxm\\assets\\elem\\{0}\\mod\\geo\\main\\ok\\{1}_geo_main.png'.format(p,p)
+#     print iconPath
+# import sys,shutil
+# sys.path.append(r"D:\zhaojiayi\Documents\coco\cocoPipeline")
+# from PIL import Image as pi
+# path = r"Z:\smxm\assets\elem\e021001cao\mod\geo\main\ok\e021001cao_geo_main.png"
+# # _image = pi.open(path)
+# # print(_image.format)
+
+# # def get_all_asset(proj):
+# proj = 'smxm'
+# projPath = 'Z:\\{0}\\assets\\'.format(proj)
+# typeList = os.listdir(projPath)
+# assetDict = {}
+# assetTypeDict = {}
+# for t in typeList:
+#     typePath = projPath + '\\' + t
+#     assetList = os.listdir(typePath)
+#     for a in assetList:
+#         if re.match('^[a-z]+\\d',a):
+#             iconPath = 'Z:\\{0}\\assets\\{1}\\{2}\\mod\\geo\\main\\ok\\{3}_geo_main.png'.format(proj,t,a,a)
+#             newPath = 'Z:\\{0}\\assets\\{1}\\{2}\\mod\\geo\\main\\ok\\{3}_geo_main.bmp'.format(proj,t,a,a)
+#             if os.path.isfile(iconPath):
+#                 _image = pi.open(iconPath)
+#                 # print(_image.format),iconPath
+#                 if _image.format == 'BMP':
+#                     if not os.path.isfile(newPath):
+#                         print iconPath
+#                         # shutil.copy(iconPath,newPath)
+#                     else:
+#                         print '?   ' + newPath
+# import shutil
+# pngPath = "C:\\Users\\zhaojiayi\\Desktop\\tstfile\\c029001hudie_geo_main.png"
+# bmpPath = "C:\\Users\\zhaojiayi\\Desktop\\tstfile\\c029001hudie_geo_main.bmp"
+# shutil.copy(pngPath,bmpPath)
+# import os
+# modPath = 'Z:\\smxm\\assets\\char\\c001001xiongmaox\\mod\\geo\\main\\ok\\c029001hudie_geo_main.png'
+
+# print os.path.dirname(modPath)
+# print (os.path.basename(modPath)).split('.')[0]
+
+#shot ani
+#############################################################
+# from shotLib import cacheLib
+# from shotLib.aniLib import cache
+# reload(cache)
+# reload(cacheLib)
+# aa=cacheLib.generate_abc_job(workarea='E:/project', project='smxm', episode='ep001', sequence='chd', shot='chd039', step='geo', frame_start=996, frame_end=1042, custom_attrib=['crypto_elem', 'crypto_id'], custom_options=['uvWrite','writeUVSets'])
+# aa+=cacheLib.generate_abc_job(workarea='E:/project', project='smxm', episode='ep001', sequence='chd', shot='chd039', step='ani', frame_start=996, frame_end=1042,custom_options=['writeVisibility','uvWrite','writeUVSets'])
+# aa+=cacheLib.generate_camera_abc_job(workarea='E:/project', project='smxm', episode='ep001', sequence='chd', shot='chd039', frame_start=996, frame_end=1042)
+# assets_root = cacheLib.export_abc_cache(aa)
+
+# cache.wrap_cache(workarea='E:/project', project='smxm', episode='ep001', sequence='chd', shot='chd039', frame_start=996, frame_end=1042,select_roots=assets_root, batch=False)
+# import sys
+# import openpyxl
+# sys.path.append('D:\\zhaojiayi\\Documents\\coco')
+# from cocoPipeline.bin.assetInShot import Function
+# proj = 'smxm'
+# xlsx_path = "Z:\\%s\\database\\casting\\main.xlsx"%proj
+# shotinfo = Function.getShot(xlsx_path, shot)
+
